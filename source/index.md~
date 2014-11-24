@@ -16,7 +16,11 @@ search: true
 
 # Introduction
 
-Welcome to the TridentSDK docuementation site. TridentSDK is a team composed of absolute best Java developers from the Bukkit API. Trident is a completely cleanroom reimplmentation of the Minecraft server, which will improve server performance, flexibility, and simplicity. 
+<aside class="notice">
+Welcome to the TridentSDK Documentation site.
+</aside>
+
+TridentSDK is a team composed of absolute best Java developers from the Bukkit API. Trident is a completely cleanroom reimplmentation of the Minecraft server, which will improve server performance, flexibility, and simplicity. 
 
 TridentSDK is the successor to the Bukkit/Spigot projects. Following the news of the "takeover" of the Bukkit project and the DMCA takedown of Bukkit, and therefore Spigot (we are quite aware of binary patches), we realized that someone needs to step up and create the best of server software for Minecraft after the decline of both projects. The result was TridentSDK, the development kit that is implemented by the server, Trident.
 
@@ -73,130 +77,22 @@ Not supported
 cd TridentSDK
 mvn clean install
 
-
 # Unix
-
+mv target/tridentsdk-1.0-SNAPSHOT.jar ..
 # Windows
-javac 
+move target/tridentsdk-1.0-SNAPSHOT.jar ..
+
+cd ../Trident
+javac -d .. -cp "../tridentsdk-1.0-SNAPSHOT.jar" src/main/java/ src/main/java/net/tridentsdk/server/TridentStart.java
+cd ..
 ```
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+After completing the above steps, you should be in the starting directory, with a fully compiled jar that can be run from the command line to start your server.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
-</aside>
 
 ## Troubleshooting
 
-# Kittens
 
-## Get All Kittens
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
+# API
 
