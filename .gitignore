@@ -14,7 +14,11 @@ tmp
 *.DS_STORE
 build/
 .cache
-push.sh
+
+# Backup files
+
+push.sh*
+.gitignore~
 
 # YARD artifacts
 .yardoc

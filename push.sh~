@@ -1,0 +1,7 @@
+# Deploy source changes
+git add .
+git commit -m "Updated site source"
+git push origin master
+
+# Deploy recompiled site
+rake publish
