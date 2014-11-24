@@ -17,7 +17,8 @@ build/
 
 # Backup files
 
-push.sh*
+push.sh
+push.sh~
 .gitignore~
 
 # YARD artifacts
