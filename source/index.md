@@ -54,29 +54,17 @@ To install Trident, you should have the following installed on your system:
 
 > To download the server source, use:
 
-```java
-Not supported
-```
-
 ```shell
 git clone https://github.com/TridentSDK/Trident.git
 ```
 
 > To download the API source, use:
 
-```java
-Not supported
-```
-
 ```shell
 git clone https://github.com/TridentSDK/TridentSDK.git
 ```
 
 > To compile the final jar, use:
-
-```java
-Not supported
-```
 
 ```shell
 cd TridentSDK
@@ -103,5 +91,47 @@ TridentSDK is developed primarily on Unix (Ubuntu, Debian) systems. If you get t
 
 If your command starts with `git`, `mvn`, or `javac`, then you either need to install, or reinstall the tools in [Prestiques](#prestiques).
 
+Another problem may be that you have not set your PATH environment variables yet. This is covered on the Presitques links.
+
+#### Paths cannot be resolved
+
+Just edit `..` to your primary directory where you executed your git commands at
+
+#### Where is my jar file?
+
+It's in the working directory of the command line. For Unix, this is often in your Home directory, and for Windows, this is in the user directory. Therefore, I recommend `cd`'ing to your desktop or other place where you know exactly where all the files are going to go and how they are organized.
+
+## Updating
+
+We are currently planning an update mechanism built into the server in the future. However, at the current moment, it has not been implemented. Open up your command line and execute the commands shown.
+
+```shell
+# Remove old files
+rm -r Trident
+rm -r TridentSDK
+
+# Download again
+git clone https://github.com/TridentSDK/Trident.git
+git clone https://github.com/TridentSDK/TridentSDK.git
+```
+
+> Now go to [Source download](#source-download) and use the `To compile the final jar` steps.
+
 # API
+
+TridentSDK provides an excellent API for developing server modifications that can be used to modify game play that is determined by the server.
+
+## Prestiques
+
+* [A Java IDE](http://en.wikibooks.org/wiki/Java_Programming/Java_IDEs)
+* [JDK 7](https://docs.oracle.com/javase/7/docs/webnotes/install/) 
+* [Maven](http://maven.apache.org/download.cgi)
+* [Git](http://git-scm.com/downloads)
+* Knowledge of the Java language
+
+## Starting
+
+As well as what is required in the prestiques, it is **imperative** that you know how to use Java and are familiar with it.
+
+
 
