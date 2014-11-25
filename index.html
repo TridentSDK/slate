@@ -109,24 +109,18 @@ Welcome to the TridentSDK Documentation site.
 <blockquote>
 <p>To download the server source, use:</p>
 </blockquote>
-<pre><code class="highlight java"><span class="n">Not</span> <span class="n">supported</span>
-</code></pre>
 <pre><code class="highlight shell">git clone https://github.com/TridentSDK/Trident.git
 </code></pre>
 
 <blockquote>
 <p>To download the API source, use:</p>
 </blockquote>
-<pre><code class="highlight java"><span class="n">Not</span> <span class="n">supported</span>
-</code></pre>
 <pre><code class="highlight shell">git clone https://github.com/TridentSDK/TridentSDK.git
 </code></pre>
 
 <blockquote>
 <p>To compile the final jar, use:</p>
 </blockquote>
-<pre><code class="highlight java"><span class="n">Not</span> <span class="n">supported</span>
-</code></pre>
 <pre><code class="highlight shell"><span class="nb">cd </span>TridentSDK
 mvn clean install
 
@@ -145,7 +139,39 @@ javac -d .. -cp <span class="s2">"../tridentsdk-1.0-SNAPSHOT.jar"</span> src/mai
 <p>TridentSDK is developed primarily on Unix (Ubuntu, Debian) systems. If you get this, look up an alternative to your command on your OS.</p>
 
 <p>If your command starts with <code class="prettyprint">git</code>, <code class="prettyprint">mvn</code>, or <code class="prettyprint">javac</code>, then you either need to install, or reinstall the tools in <a href="#prestiques">Prestiques</a>.</p>
+
+<p>Another problem may be that you have not set your PATH environment variables yet. This is covered on the Presitques links.</p>
+<h4 id='paths-cannot-be-resolved'>Paths cannot be resolved</h4>
+<p>Just edit <code class="prettyprint">..</code> to your primary directory where you executed your git commands at</p>
+<h4 id='where-is-my-jar-file'>Where is my jar file?</h4>
+<p>It&rsquo;s in the working directory of the command line. For Unix, this is often in your Home directory, and for Windows, this is in the user directory. Therefore, I recommend <code class="prettyprint">cd</code>&lsquo;ing to your desktop or other place where you know exactly where all the files are going to go and how they are organized.</p>
+<h2 id='updating'>Updating</h2>
+<p>We are currently planning an update mechanism built into the server in the future. However, at the current moment, it has not been implemented. Open up your command line and execute the commands shown.</p>
+<pre><code class="highlight shell"><span class="c"># Remove old files</span>
+rm -r Trident
+rm -r TridentSDK
+
+<span class="c"># Download again</span>
+git clone https://github.com/TridentSDK/Trident.git
+git clone https://github.com/TridentSDK/TridentSDK.git
+</code></pre>
+
+<blockquote>
+<p>Now go to <a href="#source-download">Source download</a> and use the <code class="prettyprint">To compile the final jar</code> steps.</p>
+</blockquote>
 <h1 id='api'>API</h1>
+<p>TridentSDK provides an excellent API for developing server modifications that can be used to modify game play that is determined by the server.</p>
+<h2 id='prestiques'>Prestiques</h2>
+<ul>
+<li><a href="http://en.wikibooks.org/wiki/Java_Programming/Java_IDEs">A Java IDE</a></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/webnotes/install/">JDK 7</a> </li>
+<li><a href="http://maven.apache.org/download.cgi">Maven</a></li>
+<li><a href="http://git-scm.com/downloads">Git</a></li>
+<li>Knowledge of the Java language</li>
+</ul>
+<h2 id='starting'>Starting</h2>
+<p>As well as what is required in the prestiques, it is <strong>imperative</strong> that you know how to use Java and are familiar with it.</p>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
