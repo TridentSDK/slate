@@ -117,6 +117,16 @@ git clone https://github.com/TridentSDK/TridentSDK.git
 
 > Now go to [Source download](#source-download) and use the `To compile the final jar` steps.
 
+# Contributing
+
+On the left, near the bottom, you can see a few links. Currently, there are 3 portions of the project that help would be needed in, 2 which are effective as of now.
+
+First, we will need help with the source. The highest priority right now is player joining, which we have the protocol and world loading facitlities that are mature enough to be used for the purpose. The protocol is very elusive, and if you have used it before, help would be appreciated. Head over to our GitHub page, or tweet to us to find out how to help.
+
+Second, we will need help with documentation. There are two places where documentation is needed - here, and on the source. Javadocs are sparingly done, as forward development and getting performance testing and finishing the server basics is the main priority. We could use some extra hands on source documentation. The documentation here is how to use the API, not what each method does. Head over to the Contribute to the Docs and submit a PR to the index.md on master, and we can recompile the site. Or, head over to the GitHub and submit a PR to add documentation comments to the methods.
+
+Third, and our lowest priority, is commumnity administration. As we do not have a large community yet, you may help by sharing TridentSDK with your friends and users, and later on, when TridentSDK grows, you can apply for administration positions. 
+
 # API
 
 TridentSDK provides an excellent API for developing server modifications that can be used to modify game play that is determined by the server.
@@ -133,5 +143,58 @@ TridentSDK provides an excellent API for developing server modifications that ca
 
 As well as what is required in the prestiques, it is **imperative** that you know how to use Java and are familiar with it.
 
+After you have sufficient familiarity with Java, you may checkout our [Javadocs](http://agenttroll.github.io/tridentsdk-jd/), but you may want to continue further with the documentation (there are lots of packages!) before starting.
 
+## Setup
 
+> Getting TridentSDK
+
+```shell
+git clone https://github.com/TridentSDK/TridentSDK.git
+cd TridentSDK
+mvn clean install
+```
+
+First, you would want to pull from our `TridentSDK` repo, and compile it. The dependency can be found in the `target` folder after running `mvn clean install`. 
+
+Then, start up your IDE, which you should learn how to use from the distributor's website. If you do not know how to use your IDE (which is used when practicing Java), go back to learning Java. Otherwise, create a new project, and add the TridentSDK dependency to your workspace.
+
+## Creating the main class
+
+The first step in development of a Trident plugin is to create the main class. This is where all of your plugin's functional aspects are initialized and started. Create a new package titled with your domain, backwards. For example, if you own `example.com`, then your package would be `com.example.project`, and project can be changed to your project name. This does not affect functionality. If you do not own a domain, you can use your email. For example, if you owned `someone@random.com`, then use `com.random.someone`. If you have a `-` character, use an underscore (`_`) instead.
+
+<aside class="warning">
+DO NOT use the package name `net.tridentsdk.*`. Anything starting with that package will not have its classes loaded, therefore rendering the plugin useless.
+
+In the code examples, a `net.tridentsdk` domain is used for example ONLY.
+</aside>
+
+Then, create a new Java class, which is named your project name. The class name does not affect functionality. After creating it, you would `extend TridentPlugin`, where TridentPlugin is `net.tridentsdk.plugin.TridentPlugin`.
+
+```java
+package net.tridentsdk.project;
+
+import net.tridentsdk.plugin.TridentPlugin;
+
+public class Project extends TridentPlugin {
+
+}
+```
+
+Then, you would add a PluginDescription annotation to your class to mark the load parameters.
+
+```java
+package net.tridentsdk.project;
+
+import net.tridentsdk.plugin.TridentPlugin;
+import net.tridentsdk.plugin.annotation.PluginDescription;
+
+@PluginDescription(name = "Project", author = "Pierre C", version = "6.9")
+public class Project extends TridentPlugin {
+
+}
+```
+
+Of course, replace the name with the name of the project (does not affect functionality), the author with your name/username/online name/alias (does not affect functionality), and the version with the plugin version (does not affect functionality).
+
+In reality, if this is a quick test plugin, only the `name` field is required to be filled.

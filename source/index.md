@@ -161,15 +161,7 @@ Then, start up your IDE, which you should learn how to use from the distributor'
 
 ## Creating the main class
 
-The first step in development of a Trident plugin is to create the main class. This is where all of your plugin's functional aspects are initialized and started. Create a new package titled with your domain, backwards. For example, if you own `example.com`, then your package would be `com.example.project`, and project can be changed to your project name. This does not affect functionality. If you do not own a domain, you can use your email. For example, if you owned `someone@random.com`, then use `com.random.someone`. If you have a `-` character, use an underscore (`_`) instead.
-
-<aside class="warning">
-DO NOT use the package name `net.tridentsdk.*`. Anything starting with that package will not have its classes loaded, therefore rendering the plugin useless.
-
-In the code examples, a `net.tridentsdk` domain is used for example ONLY.
-</aside>
-
-Then, create a new Java class, which is named your project name. The class name does not affect functionality. After creating it, you would `extend TridentPlugin`, where TridentPlugin is `net.tridentsdk.plugin.TridentPlugin`.
+> Extend `TridentPlugin`
 
 ```java
 package net.tridentsdk.project;
@@ -181,7 +173,7 @@ public class Project extends TridentPlugin {
 }
 ```
 
-Then, you would add a PluginDescription annotation to your class to mark the load parameters.
+> Annotate with `PluginDescription`
 
 ```java
 package net.tridentsdk.project;
@@ -194,6 +186,18 @@ public class Project extends TridentPlugin {
 
 }
 ```
+
+The first step in development of a Trident plugin is to create the main class. This is where all of your plugin's functional aspects are initialized and started. Create a new package titled with your domain, backwards. For example, if you own `example.com`, then your package would be `com.example.project`, and project can be changed to your project name. This does not affect functionality. If you do not own a domain, you can use your email. For example, if you owned `someone@random.com`, then use `com.random.someone`. If you have a `-` character, use an underscore (`_`) instead.
+
+<aside class="warning">
+DO NOT use the package name `net.tridentsdk.*`. Anything starting with that package will not have its classes loaded, therefore rendering the plugin useless.
+
+In the code examples, a `net.tridentsdk` domain is used for example ONLY.
+</aside>
+
+Then, create a new Java class, which is named your project name. The class name does not affect functionality. After creating it, you would `extend TridentPlugin`, where TridentPlugin is `net.tridentsdk.plugin.TridentPlugin`.
+
+Then, you would add a PluginDescription annotation to your class to mark the load parameters.
 
 Of course, replace the name with the name of the project (does not affect functionality), the author with your name/username/online name/alias (does not affect functionality), and the version with the plugin version (does not affect functionality).
 
