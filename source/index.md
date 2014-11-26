@@ -27,6 +27,10 @@ TridentSDK is a team composed of absolute best Java developers from the Bukkit A
 
 TridentSDK is the successor to the Bukkit/Spigot projects. Following the news of the "takeover" of the Bukkit project and the DMCA takedown of Bukkit, and therefore Spigot (we are quite aware of binary patches), we realized that someone needs to step up and create the best of server software for Minecraft after the decline of both projects. The result was TridentSDK, the development kit that is implemented by the server, Trident.
 
+## How to use the docuemntation
+
+You may be seeing just annotations in some parts of this document. This is because there are language tabs where you can switch which language the examples are in. Unlisted means that there is no support for the particular language (which are shell and java at the moment). If you aren't seeing the code, on mobile, open the nav and scroll up the sidebar, then press the other language. If you are on a desktop, on the top right is the language tabs, just click the other one.
+
 # Features
 
 Feature | Explanation | Other servers
@@ -187,6 +191,27 @@ public class Project extends TridentPlugin {
 }
 ```
 
+> Use lifecycle methods
+
+```java
+package net.tridentsdk.project;
+
+import net.tridentsdk.plugin.TridentPlugin;
+import net.tridentsdk.plugin.annotation.PluginDescription;
+
+@PluginDescription(name = "Project", author = "Pierre C", version = "6.9")
+public class Project extends TridentPlugin {
+    @Override public void onEnable() {
+    }
+
+    @Override public void onLoad() {
+    }
+
+    @Override public void onDisable() {
+    }
+}
+```
+
 The first step in development of a Trident plugin is to create the main class. This is where all of your plugin's functional aspects are initialized and started. Create a new package titled with your domain, backwards. For example, if you own `example.com`, then your package would be `com.example.project`, and project can be changed to your project name. This does not affect functionality. If you do not own a domain, you can use your email. For example, if you owned `someone@random.com`, then use `com.random.someone`. If you have a `-` character, use an underscore (`_`) instead.
 
 <aside class="warning">
@@ -197,8 +222,47 @@ In the code examples, a `net.tridentsdk` domain is used for example ONLY.
 
 Then, create a new Java class, which is named your project name. The class name does not affect functionality. After creating it, you would `extend TridentPlugin`, where TridentPlugin is `net.tridentsdk.plugin.TridentPlugin`.
 
+----
+
 Then, you would add a PluginDescription annotation to your class to mark the load parameters.
 
 Of course, replace the name with the name of the project (does not affect functionality), the author with your name/username/online name/alias (does not affect functionality), and the version with the plugin version (does not affect functionality).
 
 In reality, if this is a quick test plugin, only the `name` field is required to be filled.
+
+----
+
+`TridentPlugin` provides several methods that are executed during various events in a plugin lifecycle. They are called in this order: `onLoad`, `onEnable`, `onDisable`. `onLoad` is called after the Plugin object is created. `onEnable` is called when the plugin is enabled and starts to be provided with runtime dependecies and after class load and initialization. Finally, `onDisable` is called when the plugin is disabled, because of an error or because of a server shutdown.
+
+These methods are overridden to execute the given actions during the lifecycle events. They are not required, and if you don't need them, you should not override them, as that would not make sense.
+
+## Events
+
+> This is a proper event listener
+
+```java
+package net.tridentsdk.project;
+
+import net.tridentsdk.api.event.entity.EntityDeathEvent;
+import net.tridentsdk.api.event.Listener;
+
+public class Project implements Listener {
+    public void onEvent(EntityDeathEvent event) {
+    }
+}
+```
+
+Unlike the Bukkit event system, the Trident events are automatically registered. You should not explicity register your events.
+
+<aside class="warning">
+DO NOT register your events explicitly unless they do not work. Doing so will result in the event being called twice!
+</aside>
+
+In order to use this, the requirements for an event method is to have a `public void` method in a class implementing `Listener`, where Listener is `net.tridentsdk.api.event.Listener`, and the method must have a single parameter that is superclassed by Listenable.
+
+Events are usually self-descriptive by class name, for example, EntityDeathEvent occurs when an entity dies, of course, it must be a LivingEntity.
+
+----
+
+Event priorities are annotated by a `@Call` annotation, with an `Importance` parameter.
+
