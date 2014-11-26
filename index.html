@@ -194,15 +194,9 @@ mvn clean install
 
 <p>Then, start up your IDE, which you should learn how to use from the distributor&rsquo;s website. If you do not know how to use your IDE (which is used when practicing Java), go back to learning Java. Otherwise, create a new project, and add the TridentSDK dependency to your workspace.</p>
 <h2 id='creating-the-main-class'>Creating the main class</h2>
-<p>The first step in development of a Trident plugin is to create the main class. This is where all of your plugin&rsquo;s functional aspects are initialized and started. Create a new package titled with your domain, backwards. For example, if you own <code class="prettyprint">example.com</code>, then your package would be <code class="prettyprint">com.example.project</code>, and project can be changed to your project name. This does not affect functionality. If you do not own a domain, you can use your email. For example, if you owned <code class="prettyprint">someone@random.com</code>, then use <code class="prettyprint">com.random.someone</code>. If you have a <code class="prettyprint">-</code> character, use an underscore (<code class="prettyprint">_</code>) instead.</p>
-
-<p><aside class="warning">
-DO NOT use the package name <code class="prettyprint">net.tridentsdk.*</code>. Anything starting with that package will not have its classes loaded, therefore rendering the plugin useless.</p>
-
-<p>In the code examples, a <code class="prettyprint">net.tridentsdk</code> domain is used for example ONLY.
-</aside></p>
-
-<p>Then, create a new Java class, which is named your project name. The class name does not affect functionality. After creating it, you would <code class="prettyprint">extend TridentPlugin</code>, where TridentPlugin is <code class="prettyprint">net.tridentsdk.plugin.TridentPlugin</code>.</p>
+<blockquote>
+<p>Extend <code class="prettyprint">TridentPlugin</code></p>
+</blockquote>
 <pre><code class="highlight java"><span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">tridentsdk</span><span class="o">.</span><span class="na">project</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">net.tridentsdk.plugin.TridentPlugin</span><span class="o">;</span>
@@ -212,7 +206,9 @@ DO NOT use the package name <code class="prettyprint">net.tridentsdk.*</code>. A
 <span class="o">}</span>
 </code></pre>
 
-<p>Then, you would add a PluginDescription annotation to your class to mark the load parameters.</p>
+<blockquote>
+<p>Annotate with <code class="prettyprint">PluginDescription</code></p>
+</blockquote>
 <pre><code class="highlight java"><span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">tridentsdk</span><span class="o">.</span><span class="na">project</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">net.tridentsdk.plugin.TridentPlugin</span><span class="o">;</span>
@@ -223,6 +219,18 @@ DO NOT use the package name <code class="prettyprint">net.tridentsdk.*</code>. A
 
 <span class="o">}</span>
 </code></pre>
+
+<p>The first step in development of a Trident plugin is to create the main class. This is where all of your plugin&rsquo;s functional aspects are initialized and started. Create a new package titled with your domain, backwards. For example, if you own <code class="prettyprint">example.com</code>, then your package would be <code class="prettyprint">com.example.project</code>, and project can be changed to your project name. This does not affect functionality. If you do not own a domain, you can use your email. For example, if you owned <code class="prettyprint">someone@random.com</code>, then use <code class="prettyprint">com.random.someone</code>. If you have a <code class="prettyprint">-</code> character, use an underscore (<code class="prettyprint">_</code>) instead.</p>
+
+<p><aside class="warning">
+DO NOT use the package name <code class="prettyprint">net.tridentsdk.*</code>. Anything starting with that package will not have its classes loaded, therefore rendering the plugin useless.</p>
+
+<p>In the code examples, a <code class="prettyprint">net.tridentsdk</code> domain is used for example ONLY.
+</aside></p>
+
+<p>Then, create a new Java class, which is named your project name. The class name does not affect functionality. After creating it, you would <code class="prettyprint">extend TridentPlugin</code>, where TridentPlugin is <code class="prettyprint">net.tridentsdk.plugin.TridentPlugin</code>.</p>
+
+<p>Then, you would add a PluginDescription annotation to your class to mark the load parameters.</p>
 
 <p>Of course, replace the name with the name of the project (does not affect functionality), the author with your name/username/online name/alias (does not affect functionality), and the version with the plugin version (does not affect functionality).</p>
 
