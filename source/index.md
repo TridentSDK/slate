@@ -27,7 +27,7 @@ TridentSDK is a team composed of absolute best Java developers from the Bukkit A
 
 TridentSDK is the successor to the Bukkit/Spigot projects. Following the news of the "takeover" of the Bukkit project and the DMCA takedown of Bukkit, and therefore Spigot (we are quite aware of binary patches), we realized that someone needs to step up and create the best of server software for Minecraft after the decline of both projects. The result was TridentSDK, the development kit that is implemented by the server, Trident.
 
-## How to use the docuemntation
+## How to use the documentation
 
 You may be seeing just annotations in some parts of this document. This is because there are language tabs where you can switch which language the examples are in. Unlisted means that there is no support for the particular language (which are shell and java at the moment). If you aren't seeing the code, on mobile, open the nav and scroll up the sidebar, then press the other language. If you are on a desktop, on the top right is the language tabs, just click the other one.
 
