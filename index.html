@@ -159,6 +159,14 @@ git clone https://github.com/TridentSDK/TridentSDK.git
 <blockquote>
 <p>Now go to <a href="#source-download">Source download</a> and use the <code class="prettyprint">To compile the final jar</code> steps.</p>
 </blockquote>
+<h1 id='contributing'>Contributing</h1>
+<p>On the left, near the bottom, you can see a few links. Currently, there are 3 portions of the project that help would be needed in, 2 which are effective as of now.</p>
+
+<p>First, we will need help with the source. The highest priority right now is player joining, which we have the protocol and world loading facitlities that are mature enough to be used for the purpose. The protocol is very elusive, and if you have used it before, help would be appreciated. Head over to our GitHub page, or tweet to us to find out how to help.</p>
+
+<p>Second, we will need help with documentation. There are two places where documentation is needed - here, and on the source. Javadocs are sparingly done, as forward development and getting performance testing and finishing the server basics is the main priority. We could use some extra hands on source documentation. The documentation here is how to use the API, not what each method does. Head over to the Contribute to the Docs and submit a PR to the index.md on master, and we can recompile the site. Or, head over to the GitHub and submit a PR to add documentation comments to the methods.</p>
+
+<p>Third, and our lowest priority, is commumnity administration. As we do not have a large community yet, you may help by sharing TridentSDK with your friends and users, and later on, when TridentSDK grows, you can apply for administration positions. </p>
 <h1 id='api'>API</h1>
 <p>TridentSDK provides an excellent API for developing server modifications that can be used to modify game play that is determined by the server.</p>
 <h2 id='prestiques'>Prestiques</h2>
@@ -171,6 +179,54 @@ git clone https://github.com/TridentSDK/TridentSDK.git
 </ul>
 <h2 id='starting'>Starting</h2>
 <p>As well as what is required in the prestiques, it is <strong>imperative</strong> that you know how to use Java and are familiar with it.</p>
+
+<p>After you have sufficient familiarity with Java, you may checkout our <a href="http://agenttroll.github.io/tridentsdk-jd/">Javadocs</a>, but you may want to continue further with the documentation (there are lots of packages!) before starting.</p>
+<h2 id='setup'>Setup</h2>
+<blockquote>
+<p>Getting TridentSDK</p>
+</blockquote>
+<pre><code class="highlight shell">git clone https://github.com/TridentSDK/TridentSDK.git
+<span class="nb">cd </span>TridentSDK
+mvn clean install
+</code></pre>
+
+<p>First, you would want to pull from our <code class="prettyprint">TridentSDK</code> repo, and compile it. The dependency can be found in the <code class="prettyprint">target</code> folder after running <code class="prettyprint">mvn clean install</code>. </p>
+
+<p>Then, start up your IDE, which you should learn how to use from the distributor&rsquo;s website. If you do not know how to use your IDE (which is used when practicing Java), go back to learning Java. Otherwise, create a new project, and add the TridentSDK dependency to your workspace.</p>
+<h2 id='creating-the-main-class'>Creating the main class</h2>
+<p>The first step in development of a Trident plugin is to create the main class. This is where all of your plugin&rsquo;s functional aspects are initialized and started. Create a new package titled with your domain, backwards. For example, if you own <code class="prettyprint">example.com</code>, then your package would be <code class="prettyprint">com.example.project</code>, and project can be changed to your project name. This does not affect functionality. If you do not own a domain, you can use your email. For example, if you owned <code class="prettyprint">someone@random.com</code>, then use <code class="prettyprint">com.random.someone</code>. If you have a <code class="prettyprint">-</code> character, use an underscore (<code class="prettyprint">_</code>) instead.</p>
+
+<p><aside class="warning">
+DO NOT use the package name <code class="prettyprint">net.tridentsdk.*</code>. Anything starting with that package will not have its classes loaded, therefore rendering the plugin useless.</p>
+
+<p>In the code examples, a <code class="prettyprint">net.tridentsdk</code> domain is used for example ONLY.
+</aside></p>
+
+<p>Then, create a new Java class, which is named your project name. The class name does not affect functionality. After creating it, you would <code class="prettyprint">extend TridentPlugin</code>, where TridentPlugin is <code class="prettyprint">net.tridentsdk.plugin.TridentPlugin</code>.</p>
+<pre><code class="highlight java"><span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">tridentsdk</span><span class="o">.</span><span class="na">project</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">net.tridentsdk.plugin.TridentPlugin</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Project</span> <span class="kd">extends</span> <span class="n">TridentPlugin</span> <span class="o">{</span>
+
+<span class="o">}</span>
+</code></pre>
+
+<p>Then, you would add a PluginDescription annotation to your class to mark the load parameters.</p>
+<pre><code class="highlight java"><span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">tridentsdk</span><span class="o">.</span><span class="na">project</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">net.tridentsdk.plugin.TridentPlugin</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.tridentsdk.plugin.annotation.PluginDescription</span><span class="o">;</span>
+
+<span class="nd">@PluginDescription</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Project"</span><span class="o">,</span> <span class="n">author</span> <span class="o">=</span> <span class="s">"Pierre C"</span><span class="o">,</span> <span class="n">version</span> <span class="o">=</span> <span class="s">"6.9"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Project</span> <span class="kd">extends</span> <span class="n">TridentPlugin</span> <span class="o">{</span>
+
+<span class="o">}</span>
+</code></pre>
+
+<p>Of course, replace the name with the name of the project (does not affect functionality), the author with your name/username/online name/alias (does not affect functionality), and the version with the plugin version (does not affect functionality).</p>
+
+<p>In reality, if this is a quick test plugin, only the <code class="prettyprint">name</code> field is required to be filled.</p>
 
       </div>
       <div class="dark-box">
