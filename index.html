@@ -182,7 +182,7 @@ git clone https://github.com/TridentSDK/TridentSDK.git
 <h2 id='starting'>Starting</h2>
 <p>As well as what is required in the prestiques, it is <strong>imperative</strong> that you know how to use Java and are familiar with it.</p>
 
-<p>After you have sufficient familiarity with Java, you may checkout our <a href="http://agenttroll.github.io/tridentsdk-jd/">Javadocs</a>, but you may want to continue further with the documentation (there are lots of packages!) before starting.</p>
+<p>After you have sufficient familiarity with Java, you may checkout our <a href="http://tridentsdk.github.io/Javadocs/">Javadocs</a>, but you may want to continue further with the documentation (there are lots of packages!) before starting.</p>
 <h2 id='setup'>Setup</h2>
 <blockquote>
 <p>Getting TridentSDK</p>
@@ -266,6 +266,36 @@ DO NOT use the package name <code class="prettyprint">net.tridentsdk.*</code>. A
 <p><code class="prettyprint">TridentPlugin</code> provides several methods that are executed during various events in a plugin lifecycle. They are called in this order: <code class="prettyprint">onLoad</code>, <code class="prettyprint">onEnable</code>, <code class="prettyprint">onDisable</code>. <code class="prettyprint">onLoad</code> is called after the Plugin object is created. <code class="prettyprint">onEnable</code> is called when the plugin is enabled and starts to be provided with runtime dependecies and after class load and initialization. Finally, <code class="prettyprint">onDisable</code> is called when the plugin is disabled, because of an error or because of a server shutdown.</p>
 
 <p>These methods are overridden to execute the given actions during the lifecycle events. They are not required, and if you don&rsquo;t need them, you should not override them, as that would not make sense.</p>
+<h2 id='commands'>Commands</h2>
+<blockquote>
+<p>Implementing a proper command</p>
+</blockquote>
+<pre><code class="highlight java"><span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">tridentsdk</span><span class="o">.</span><span class="na">project</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">net.tridentsdk.api.entity.living.Player</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.tridentsdk.plugin.cmd.Command</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.tridentsdk.plugin.cmd.CommandIssuer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.tridentsdk.plugin.cmd.ConsoleSender</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Project</span> <span class="kd">extends</span> <span class="n">Command</span> <span class="o">{</span>
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handlePlayer</span><span class="o">(</span><span class="n">Player</span> <span class="n">player</span><span class="o">,</span> <span class="n">String</span> <span class="n">arguments</span><span class="o">,</span> <span class="n">String</span> <span class="n">alias</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handleConsole</span><span class="o">(</span><span class="n">ConsoleSender</span> <span class="n">sender</span><span class="o">,</span> <span class="n">String</span> <span class="n">arguments</span><span class="o">,</span> <span class="n">String</span> <span class="n">alias</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">CommandIssuer</span> <span class="n">sender</span><span class="o">,</span> <span class="n">String</span> <span class="n">arguments</span><span class="o">,</span> <span class="n">String</span> <span class="n">alias</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p><aside class="warning">
+DO NOT register your commands explicitly unless they do not work. Doing so will result in the command being called twice!
+</aside></p>
+
+<p>Commands are implemented by subclassing the <code class="prettyprint">Command</code> class, at <code class="prettyprint">net.tridentsdk.plugin.cmd.Command</code>. In order to handle commands, there are 3 provided methods to check for commands. They are <code class="prettyprint">handle</code>, <code class="prettyprint">handlePlayer</code>, and <code class="prettyprint">handleConsole</code>. At the time of writing, TridentSDK does not support Command Blocks. The <code class="prettyprint">handle</code> method handles all commands that are passed to it. <code class="prettyprint">handlePlayer</code> only handles player executed commands, and <code class="prettyprint">handleConsole</code> only handles console commands. </p>
+
+<p>The first parameter passed to the handle method is the issuer of the command. This can be a player or console in <code class="prettyprint">handle</code>, which is checked by using <code class="prettyprint">instanceof</code> for the Player or ConsoleSender classes. The second parameters is args, which is unused at the time. Finally, the alias is the command executed, the first word after <code class="prettyprint">/</code> in the command box. Each has its documentation at the respective classes. </p>
 <h2 id='events'>Events</h2>
 <blockquote>
 <p>This is a proper event listener</p>
@@ -280,18 +310,6 @@ DO NOT use the package name <code class="prettyprint">net.tridentsdk.*</code>. A
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
-
-<p>Unlike the Bukkit event system, the Trident events are automatically registered. You should not explicity register your events.</p>
-
-<p><aside class="warning">
-DO NOT register your events explicitly unless they do not work. Doing so will result in the event being called twice!
-</aside></p>
-
-<p>In order to use this, the requirements for an event method is to have a <code class="prettyprint">public void</code> method in a class implementing <code class="prettyprint">Listener</code>, where Listener is <code class="prettyprint">net.tridentsdk.api.event.Listener</code>, and the method must have a single parameter that is superclassed by Listenable.</p>
-
-<p>Events are usually self-descriptive by class name, for example, EntityDeathEvent occurs when an entity dies, of course, it must be a LivingEntity.</p>
-
-<hr>
 
 <blockquote>
 <p>This is a proper way to prioritize events:</p>
@@ -310,6 +328,51 @@ DO NOT register your events explicitly unless they do not work. Doing so will re
 <span class="o">}</span>
 </code></pre>
 
+<blockquote>
+<p>Implementing ignorance</p>
+</blockquote>
+<pre><code class="highlight java"><span class="n">Listenable</span> <span class="n">event</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EntityDeathEvent</span><span class="o">(</span><span class="cm">/* Your values */</span><span class="o">);</span>
+<span class="n">EventManager</span><span class="o">.</span><span class="na">call</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">isIgnored</span><span class="o">())</span> <span class="o">{</span>
+    <span class="c1">// Do what you need to do if the event is cancelled</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="c1">// Proceed</span>
+<span class="o">}</span>
+</code></pre>
+
+<blockquote>
+<p>Ignoring events</p>
+</blockquote>
+<pre><code class="highlight java"><span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">tridentsdk</span><span class="o">.</span><span class="na">project</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">net.tridentsdk.api.event.entity.EntityDeathEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.tridentsdk.api.event.Listener</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Project</span> <span class="kd">implements</span> <span class="n">Listener</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">onEvent</span><span class="o">(</span><span class="n">EntityDeathEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">event</span><span class="o">.</span><span class="na">ignore</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>Unlike the Bukkit event system, the Trident events are automatically registered. You should not explicity register your events.</p>
+
+<p><aside class="warning">
+DO NOT register your events explicitly unless they do not work. Doing so will result in the event being called twice!
+</aside></p>
+
+<p>In order to use this, the requirements for an event method is to have a <code class="prettyprint">public void</code> method in a class implementing <code class="prettyprint">Listener</code>, where Listener is <code class="prettyprint">net.tridentsdk.api.event.Listener</code>, and the method must have a single parameter that is superclassed by Listenable.</p>
+
+<p><aside class="notice">
+You can prevent your class from being registered if implementing Listener and marked with <code class="prettyprint">@IgnoreRegistration</code>.
+</aside></p>
+
+<p>Events are usually self-descriptive by class name, for example, EntityDeathEvent occurs when an entity dies, of course, it must be a LivingEntity.</p>
+
+<p>Events can be removed from the event caller list using <a href="http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/EventManager.html#unregister(net.tridentsdk.api.event.Listener)"><code class="prettyprint">EventManager#unregister(Listener)</code></a>, where <code class="prettyprint">Listener</code> represents an instance of the listener that was registered into the list.</p>
+
+<hr>
+
 <p>Event priorities are annotated by a <code class="prettyprint">@Call</code> annotation, with an <code class="prettyprint">Importance</code> parameter.</p>
 
 <p>Importance events are called in this order: <code class="prettyprint">LOWEST</code>, <code class="prettyprint">LOW</code>, <code class="prettyprint">MEDIUM</code>, <code class="prettyprint">HIGH</code>, <code class="prettyprint">HIGHEST</code>. This occurs because the most important events must edit what the other plugins have set to the event. If 2 events have the same priority, then they are registered by which plugin loads first. If the event does not have a <code class="prettyprint">@Call</code> annotation, then the importance is automatically set to <code class="prettyprint">Importance.MEDIUM</code>.</p>
@@ -318,6 +381,14 @@ DO NOT register your events explicitly unless they do not work. Doing so will re
 
 <hr>
 
+<p>Events that <code class="prettyprint">implement Ignorable</code> where Ignorable is <code class="prettyprint">net.tridentsdk.api.event.Ignorable</code> can be used to prevent and implement cancellation functionality. To provide cancellation functionality for your event, simply <code class="prettyprint">implement Ignorable</code>, overriding the two new methods to modify a <code class="prettyprint">boolean</code> field, which is checked when the event is called. Events are called using <a href="http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/EventManager.html#call(net.tridentsdk.api.event.Listenable)"><code class="prettyprint">EventManager#call(Listenable)</code></a>. After calling, check the event object using <code class="prettyprint">isIgnored()</code>, which returns <code class="prettyprint">true</code> if the event should be cancelled.</p>
+
+<p>For the API user, you can choose to have the event do it&rsquo;s functionality specified in the cancellation policy by calling <a href="http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Ignorable.html#ignore(boolean)"><code class="prettyprint">Ignorable#ignore(boolean)</code></a>, where the boolean is true if the event should be cancelled, or false to prevent the event from being cancelled by lower priority listeners. You can check if the event has been cancelled before it reached the current listener using <a href="http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Ignorable.html#isIgnored()"><code class="prettyprint">Ignorable#isIgnored()</code></a>, which returns true if the listenable should be ignored.</p>
+
+<p><aside class="warning">
+Some Listenables do not implement <code class="prettyprint">Ignorable</code>. Check the docs!
+</aside></p>
+<h2 id='configuration'>Configuration</h2>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
