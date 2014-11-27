@@ -293,7 +293,30 @@ DO NOT register your events explicitly unless they do not work. Doing so will re
 
 <hr>
 
+<blockquote>
+<p>This is a proper way to prioritize events:</p>
+</blockquote>
+<pre><code class="highlight java"><span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">tridentsdk</span><span class="o">.</span><span class="na">project</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">net.tridentsdk.api.event.entity.EntityDeathEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.tridentsdk.api.event.Call</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.tridentsdk.api.event.Importance</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.tridentsdk.api.event.Listener</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Project</span> <span class="kd">implements</span> <span class="n">Listener</span> <span class="o">{</span>
+    <span class="nd">@Call</span><span class="o">(</span><span class="n">Importance</span><span class="o">.</span><span class="na">LOWEST</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">onEvent</span><span class="o">(</span><span class="n">EntityDeathEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
 <p>Event priorities are annotated by a <code class="prettyprint">@Call</code> annotation, with an <code class="prettyprint">Importance</code> parameter.</p>
+
+<p>Importance events are called in this order: <code class="prettyprint">LOWEST</code>, <code class="prettyprint">LOW</code>, <code class="prettyprint">MEDIUM</code>, <code class="prettyprint">HIGH</code>, <code class="prettyprint">HIGHEST</code>. This occurs because the most important events must edit what the other plugins have set to the event. If 2 events have the same priority, then they are registered by which plugin loads first. If the event does not have a <code class="prettyprint">@Call</code> annotation, then the importance is automatically set to <code class="prettyprint">Importance.MEDIUM</code>.</p>
+
+<p>Importance is valuable in APIs, where you&rsquo;d want to check in with events, but not edit them, and allow other plugins to view event modifications made by the API, as well as providing higher level plugins to have control over the event result.</p>
+
+<hr>
 
       </div>
       <div class="dark-box">
