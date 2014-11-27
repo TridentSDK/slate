@@ -264,7 +264,28 @@ Events are usually self-descriptive by class name, for example, EntityDeathEvent
 
 ----
 
+> This is a proper way to prioritize events:
+
+```java
+package net.tridentsdk.project;
+
+import net.tridentsdk.api.event.entity.EntityDeathEvent;
+import net.tridentsdk.api.event.Call;
+import net.tridentsdk.api.event.Importance;
+import net.tridentsdk.api.event.Listener;
+
+public class Project implements Listener {
+    @Call(Importance.LOWEST)
+    public void onEvent(EntityDeathEvent event) {
+    }
+}
+```
+
 Event priorities are annotated by a `@Call` annotation, with an `Importance` parameter.
 
+Importance events are called in this order: `LOWEST`, `LOW`, `MEDIUM`, `HIGH`, `HIGHEST`. This occurs because the most important events must edit what the other plugins have set to the event. If 2 events have the same priority, then they are registered by which plugin loads first. If the event does not have a `@Call` annotation, then the importance is automatically set to `Importance.MEDIUM`.
 
+Importance is valuable in APIs, where you'd want to check in with events, but not edit them, and allow other plugins to view event modifications made by the API, as well as providing higher level plugins to have control over the event result.
+
+----
 
