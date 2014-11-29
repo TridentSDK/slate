@@ -147,7 +147,7 @@ TridentSDK provides an excellent API for developing server modifications that ca
 
 As well as what is required in the prestiques, it is **imperative** that you know how to use Java and are familiar with it.
 
-After you have sufficient familiarity with Java, you may checkout our [Javadocs](http://agenttroll.github.io/tridentsdk-jd/), but you may want to continue further with the documentation (there are lots of packages!) before starting.
+After you have sufficient familiarity with Java, you may checkout our [Javadocs](http://tridentsdk.github.io/Javadocs/), but you may want to continue further with the documentation (there are lots of packages!) before starting.
 
 ## Setup
 
@@ -236,6 +236,38 @@ In reality, if this is a quick test plugin, only the `name` field is required to
 
 These methods are overridden to execute the given actions during the lifecycle events. They are not required, and if you don't need them, you should not override them, as that would not make sense.
 
+## Commands
+
+> Implementing a proper command
+
+```java
+package net.tridentsdk.project;
+
+import net.tridentsdk.api.entity.living.Player;
+import net.tridentsdk.plugin.cmd.Command;
+import net.tridentsdk.plugin.cmd.CommandIssuer;
+import net.tridentsdk.plugin.cmd.ConsoleSender;
+
+public class Project extends Command {
+    @Override public void handlePlayer(Player player, String arguments, String alias) {
+    }
+
+    @Override public void handleConsole(ConsoleSender sender, String arguments, String alias) {
+    }
+    
+    @Override public void handle(CommandIssuer sender, String arguments, String alias) {
+    }
+}
+```
+
+<aside class="warning">
+DO NOT register your commands explicitly unless they do not work. Doing so will result in the command being called twice!
+</aside>
+
+Commands are implemented by subclassing the `Command` class, at `net.tridentsdk.plugin.cmd.Command`. In order to handle commands, there are 3 provided methods to check for commands. They are `handle`, `handlePlayer`, and `handleConsole`. At the time of writing, TridentSDK does not support Command Blocks. The `handle` method handles all commands that are passed to it. `handlePlayer` only handles player executed commands, and `handleConsole` only handles console commands. 
+
+The first parameter passed to the handle method is the issuer of the command. This can be a player or console in `handle`, which is checked by using `instanceof` for the Player or ConsoleSender classes. The second parameters is args, which is unused at the time. Finally, the alias is the command executed, the first word after `/` in the command box. Each has its documentation at the respective classes. 
+
 ## Events
 
 > This is a proper event listener
@@ -251,18 +283,6 @@ public class Project implements Listener {
     }
 }
 ```
-
-Unlike the Bukkit event system, the Trident events are automatically registered. You should not explicity register your events.
-
-<aside class="warning">
-DO NOT register your events explicitly unless they do not work. Doing so will result in the event being called twice!
-</aside>
-
-In order to use this, the requirements for an event method is to have a `public void` method in a class implementing `Listener`, where Listener is `net.tridentsdk.api.event.Listener`, and the method must have a single parameter that is superclassed by Listenable.
-
-Events are usually self-descriptive by class name, for example, EntityDeathEvent occurs when an entity dies, of course, it must be a LivingEntity.
-
-----
 
 > This is a proper way to prioritize events:
 
@@ -281,6 +301,51 @@ public class Project implements Listener {
 }
 ```
 
+> Implementing ignorance
+
+```java
+Listenable event = new EntityDeathEvent(/* Your values */);
+EventManager.call(event);
+if (event.isIgnored()) {
+    // Do what you need to do if the event is cancelled
+} else {
+    // Proceed
+}
+```
+
+> Ignoring events
+
+```java
+package net.tridentsdk.project;
+
+import net.tridentsdk.api.event.entity.EntityDeathEvent;
+import net.tridentsdk.api.event.Listener;
+
+public class Project implements Listener {
+    public void onEvent(EntityDeathEvent event) {
+        event.ignore(true);
+    }
+}
+```
+
+Unlike the Bukkit event system, the Trident events are automatically registered. You should not explicity register your events.
+
+<aside class="warning">
+DO NOT register your events explicitly unless they do not work. Doing so will result in the event being called twice!
+</aside>
+
+In order to use this, the requirements for an event method is to have a `public void` method in a class implementing `Listener`, where Listener is `net.tridentsdk.api.event.Listener`, and the method must have a single parameter that is superclassed by Listenable.
+
+<aside class="notice">
+You can prevent your class from being registered if implementing Listener and marked with `@IgnoreRegistration`.
+</aside>
+
+Events are usually self-descriptive by class name, for example, EntityDeathEvent occurs when an entity dies, of course, it must be a LivingEntity.
+
+Events can be removed from the event caller list using [`EventManager#unregister(Listener)`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/EventManager.html#unregister(net.tridentsdk.api.event.Listener)), where `Listener` represents an instance of the listener that was registered into the list.
+
+----
+
 Event priorities are annotated by a `@Call` annotation, with an `Importance` parameter.
 
 Importance events are called in this order: `LOWEST`, `LOW`, `MEDIUM`, `HIGH`, `HIGHEST`. This occurs because the most important events must edit what the other plugins have set to the event. If 2 events have the same priority, then they are registered by which plugin loads first. If the event does not have a `@Call` annotation, then the importance is automatically set to `Importance.MEDIUM`.
@@ -288,4 +353,16 @@ Importance events are called in this order: `LOWEST`, `LOW`, `MEDIUM`, `HIGH`, `
 Importance is valuable in APIs, where you'd want to check in with events, but not edit them, and allow other plugins to view event modifications made by the API, as well as providing higher level plugins to have control over the event result.
 
 ----
+
+Events that `implement Ignorable` where Ignorable is `net.tridentsdk.api.event.Ignorable` can be used to prevent and implement cancellation functionality. To provide cancellation functionality for your event, simply `implement Ignorable`, overriding the two new methods to modify a `boolean` field, which is checked when the event is called. Events are called using [`EventManager#call(Listenable)`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/EventManager.html#call(net.tridentsdk.api.event.Listenable)). After calling, check the event object using `isIgnored()`, which returns `true` if the event should be cancelled.
+
+For the API user, you can choose to have the event do it's functionality specified in the cancellation policy by calling [`Ignorable#ignore(boolean)`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Ignorable.html#ignore(boolean)), where the boolean is true if the event should be cancelled, or false to prevent the event from being cancelled by lower priority listeners. You can check if the event has been cancelled before it reached the current listener using [`Ignorable#isIgnored()`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Ignorable.html#isIgnored()), which returns true if the listenable should be ignored.
+
+<aside class="warning">
+Some Listenables do not implement `Ignorable`. Check the docs!
+</aside>
+
+## Configuration
+
+
 
