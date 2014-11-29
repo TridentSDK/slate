@@ -391,12 +391,15 @@ Some Listenables do not implement <code class="prettyprint">Ignorable</code>. Ch
 <h2 id='configuration'>Configuration</h2><h1 id='benchmarks'>Benchmarks</h1>
 <p>TridentSDK is heavily benchmarked. Some of the most performance critical classes, such as the reflection API, scheduling, events, and caching are benchmarked inside the Trident test package.</p>
 
-<p>This is a list of the currently benchmarked classes:
-- Reflection benchmark: http://bit.ly/1vwutXc
-- ConcurrentHashMapV8 benchmark: http://bit.ly/1y90tml
-- ConcurrentCache benchmark: http://bit.ly/1A21o5O
-- EventManager benchmark: http://bit.ly/1y919IB
-- Scheduler benchmark: http://bit.ly/12fTNow</p>
+<p>This is a list of the currently benchmarked classes:</p>
+
+<ul>
+<li><a href="http://bit.ly/1vwutXc">Reflection benchmark</a></li>
+<li><a href="http://bit.ly/1y90tml">ConcurrentHashMapV8 benchmark</a></li>
+<li><a href="http://bit.ly/1A21o5O">ConcurrentCache benchmark</a></li>
+<li><a href="http://bit.ly/1y919IB">EventManager benchmark</a></li>
+<li><a href="http://bit.ly/12fTNow">Scheduler benchmark</a></li>
+</ul>
 
 <p>All benchmarks have a baseline benchmark at 0, called <em>control</em>. The traditional benchmark, before the update, used straight pounding on the data structure that was being benchmarked. In a realistic situation, this does not happen. Thankfully, we used <a href="http://openjdk.java.net/projects/code-tools/jmh/">JMH</a>, which is feature packed with everything we needed to performance test our classes.</p>
 
