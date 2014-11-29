@@ -369,11 +369,12 @@ Some Listenables do not implement `Ignorable`. Check the docs!
 TridentSDK is heavily benchmarked. Some of the most performance critical classes, such as the reflection API, scheduling, events, and caching are benchmarked inside the Trident test package.
 
 This is a list of the currently benchmarked classes:
-- Reflection benchmark: http://bit.ly/1vwutXc
-- ConcurrentHashMapV8 benchmark: http://bit.ly/1y90tml
-- ConcurrentCache benchmark: http://bit.ly/1A21o5O
-- EventManager benchmark: http://bit.ly/1y919IB
-- Scheduler benchmark: http://bit.ly/12fTNow
+
+- [Reflection benchmark](http://bit.ly/1vwutXc)
+- [ConcurrentHashMapV8 benchmark](http://bit.ly/1y90tml)
+- [ConcurrentCache benchmark](http://bit.ly/1A21o5O)
+- [EventManager benchmark](http://bit.ly/1y919IB)
+- [Scheduler benchmark](http://bit.ly/12fTNow)
 
 All benchmarks have a baseline benchmark at 0, called *control*. The traditional benchmark, before the update, used straight pounding on the data structure that was being benchmarked. In a realistic situation, this does not happen. Thankfully, we used [JMH](http://openjdk.java.net/projects/code-tools/jmh/), which is feature packed with everything we needed to performance test our classes.
 
