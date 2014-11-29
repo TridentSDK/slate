@@ -388,6 +388,10 @@ Secondly, you may see that if you run the method several times, you'd get differ
 
 Third, you might also see that control is a straight line... Yes, it is a straight line if you look at the URL data. Control, again, is the amoritization cost, which is subtracted by the amoritization cost when plotted... So the amoritization cost minus the amoritization cost is 0.
 
+----
+
+If you'd like to use `Benchmarks` for your own benchmarks, please note the Apache License, and `BenchmarkTemplate` can be used as a starter for your benchmarks. Benchmarking requires a large amount of knowledge on how the Java technologies (GC, JIT, JVM, etc) work. I am not liable for any damages caused by the results I have posted  or generated from my class. They are meant for reference use only. 
+
 ## How to read the charts
 
 The charts are in nanoseconds / operation on the Y axis, which corresponds with the amoritization cycles for that harness point. 1024 cycles represents light server load, while 1 represents heavy server load. The data for the selected item should fit the load capacity of the server, and the majority of the fastest option. TridentSDK maintains responsiveness by allowing slow registry trade for fast runtime.
