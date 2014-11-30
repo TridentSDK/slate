@@ -389,6 +389,10 @@ You can prevent your class from being registered if implementing Listener and ma
 Some Listenables do not implement <code class="prettyprint">Ignorable</code>. Check the docs!
 </aside></p>
 <h2 id='configuration'>Configuration</h2><h1 id='benchmarks'>Benchmarks</h1>
+<p><aside class="notice">
+Nerd section! You don&rsquo;t need this information to make a plugin!
+</aside></p>
+
 <p>TridentSDK is heavily benchmarked. Some of the most performance critical classes, such as the reflection API, scheduling, events, and caching are benchmarked inside the Trident test package.</p>
 
 <p>This is a list of the currently benchmarked classes:</p>
@@ -416,8 +420,10 @@ Some Listenables do not implement <code class="prettyprint">Ignorable</code>. Ch
 <hr>
 
 <p>If you&rsquo;d like to use <code class="prettyprint">Benchmarks</code> for your own benchmarks, please note the Apache License, and <code class="prettyprint">BenchmarkTemplate</code> can be used as a starter for your benchmarks. Benchmarking requires a large amount of knowledge on how the Java technologies (GC, JIT, JVM, etc) work. I am not liable for any damages caused by the results I have posted  or generated from my class. They are meant for reference use only. </p>
+
+<p>Reference article: <a href="http://shipilev.net/blog/2014/nanotrusting-nanotime/">Nanotrusting the Nanotime</a>, by Aleksey Shipilёv</p>
 <h2 id='how-to-read-the-charts'>How to read the charts</h2>
-<p>The charts are in nanoseconds / operation on the Y axis, which corresponds with the amoritization cycles for that harness point. 1024 cycles represents light server load, while 1 represents heavy server load. The data for the selected item should fit the load capacity of the server, and the majority of the fastest option. TridentSDK maintains responsiveness by allowing slow registry trade for fast runtime.</p>
+<p>The charts are in nanoseconds / operation on the Y axis, which corresponds with the amoritization cycles for that harness point. 1024 cycles represents light server load, while 1 represents heavy server load. The data for the selected item should fit the load capacity of the server, and the majority of the fastest option. TridentSDK maintains responsiveness by allowing slow registry trade for fast runtime. Lower ns/op is better.</p>
 <h2 id='why-benchmarking-matters'>Why benchmarking matters</h2>
 <p>The past generation server software, and designs based on them, such as Sponge/Forge/NMS based servers are unable to multithread their servers because NMS limits the ability to exploit multiply processors. Servers are plagued with &ldquo;Cannot keep up&rdquo; warnings, which result in too many tasks being executed for the given time in a server heartbeat. In order to reduce these warnings, TridentSDK is implemented cleanroom, breaking free of the multithreading bonds to fully use the processor effieciently, and reduce the task execution time to fit more in a single tick.</p>
 
