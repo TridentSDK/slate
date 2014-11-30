@@ -366,6 +366,10 @@ Some Listenables do not implement `Ignorable`. Check the docs!
 
 # Benchmarks
 
+<aside class="notice">
+Nerd section! You don't need this information to make a plugin!
+</aside>
+
 TridentSDK is heavily benchmarked. Some of the most performance critical classes, such as the reflection API, scheduling, events, and caching are benchmarked inside the Trident test package.
 
 This is a list of the currently benchmarked classes:
@@ -392,9 +396,11 @@ Third, you might also see that control is a straight line... Yes, it is a straig
 
 If you'd like to use `Benchmarks` for your own benchmarks, please note the Apache License, and `BenchmarkTemplate` can be used as a starter for your benchmarks. Benchmarking requires a large amount of knowledge on how the Java technologies (GC, JIT, JVM, etc) work. I am not liable for any damages caused by the results I have posted  or generated from my class. They are meant for reference use only. 
 
+Reference article: [Nanotrusting the Nanotime](http://shipilev.net/blog/2014/nanotrusting-nanotime/), by Aleksey Shipilёv
+
 ## How to read the charts
 
-The charts are in nanoseconds / operation on the Y axis, which corresponds with the amoritization cycles for that harness point. 1024 cycles represents light server load, while 1 represents heavy server load. The data for the selected item should fit the load capacity of the server, and the majority of the fastest option. TridentSDK maintains responsiveness by allowing slow registry trade for fast runtime.
+The charts are in nanoseconds / operation on the Y axis, which corresponds with the amoritization cycles for that harness point. 1024 cycles represents light server load, while 1 represents heavy server load. The data for the selected item should fit the load capacity of the server, and the majority of the fastest option. TridentSDK maintains responsiveness by allowing slow registry trade for fast runtime. Lower ns/op is better.
 
 ## Why benchmarking matters
 

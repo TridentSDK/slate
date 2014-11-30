@@ -404,7 +404,7 @@ The charts are in nanoseconds / operation on the Y axis, which corresponds with 
 
 ## Why benchmarking matters
 
-The past generation server software, and designs based on them, such as Sponge/Forge/NMS based servers are unable to multithread their servers because NMS limits the ability to exploit multiply processors. Servers are plagued with "Cannot keep up" warnings, which result in too many tasks being executed for the given time in a server heartbeat. In order to reduce these warnings, TridentSDK is implemented cleanroom, breaking free of the multithreading bonds to fully use the processor effieciently, and reduce the task execution time to fit more in a single tick.
+The past generation server software, and designs based on them, such as Sponge/Forge/NMS based servers are unable to multithread their servers because NMS limits the ability to exploit multiple processors. Servers are plagued with "Cannot keep up" warnings, which result in too many tasks being executed for the given time in a server heartbeat. In order to reduce these warnings, TridentSDK is implemented cleanroom, breaking free of the multithreading bonds to fully use the processor efficiently, and reduce the task execution time to fit more in a single tick.
 
 These tests compare performance of a particular class to previous generation software or library classes (that may or may not have the same semantic functionality as the benchmark comparison). They also help debug classes, as performance issues relate to bugs in the code, or inefficient/over-defensive programming.
 
