@@ -388,7 +388,35 @@ You can prevent your class from being registered if implementing Listener and ma
 <p><aside class="warning">
 Some Listenables do not implement <code class="prettyprint">Ignorable</code>. Check the docs!
 </aside></p>
-<h2 id='configuration'>Configuration</h2><h1 id='benchmarks'>Benchmarks</h1>
+<h2 id='configuration'>Configuration</h2>
+<blockquote>
+<p>Correctly creating a configuration file, or multiple.</p>
+</blockquote>
+<pre><code class="highlight java"><span class="kn">import</span> <span class="nn">net.tridentsdk.api.config.JsonConfig</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">net.tridentsdk.api.factory.Factories</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Project</span> <span class="kd">extends</span> <span class="n">TridentPlugin</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">JsonConfig</span> <span class="n">config</span> <span class="o">=</span>
+            <span class="n">Factories</span>
+            <span class="o">.</span><span class="na">configs</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">createConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getConfigDirectory</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/configuration.json"</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">JsonConfig</span> <span class="n">anotherConfig</span> <span class="o">=</span>
+            <span class="n">Factories</span>
+            <span class="o">.</span><span class="na">configs</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">createConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">getConfigDirectory</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/players.json"</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>The TridentSDK configuration is similar to that of the Bukkit configuration, however, we use JSON instead of YAML. JSON has a slightly more complex syntax than YAML, however, it does not have the same constraints (such as anti-tabs, spacing, etc). </p>
+
+<p>Each <code class="prettyprint">TridentPlugin</code> has a configuration directory to hold files the plugin may have. This can be accessed using <code class="prettyprint">TridentPlugin#getgetConfigDirectory()</code>, returned as a <code class="prettyprint">File</code>. This file is actually a folder.</p>
+
+<p>A configuration file can be created, or retrieved using the <code class="prettyprint">ConfigFactory#createConfig(...)</code> method, from <code class="prettyprint">Factories#configs()</code>. More information about <code class="prettyprint">Factories</code> can be found in the <a href="#factories">section below</a>. If this config exists, the data will be loaded into the returned <code class="prettyprint">JsonConfig</code> object. Else, it will be created for you. The path is preferred to have a <code class="prettyprint">.json</code> file type.</p>
+
+<p>If you do not want your configuration, it can be deleted at the path specified in the JsonConfig.</p>
+
+<p>This is </p>
+<h2 id='factories'>Factories</h2><h1 id='benchmarks'>Benchmarks</h1>
 <p><aside class="notice">
 Nerd section! You don&rsquo;t need this information to make a plugin!
 </aside></p>
