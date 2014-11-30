@@ -364,6 +364,36 @@ Some Listenables do not implement `Ignorable`. Check the docs!
 
 ## Configuration
 
+> Correctly creating a configuration file, or multiple.
+
+```java
+import net.tridentsdk.api.config.JsonConfig;
+import net.tridentsdk.api.factory.Factories;
+
+public class Project extends TridentPlugin {
+    private final JsonConfig config =
+            Factories
+            .configs()
+            .createConfig(this.getConfigDirectory() + "/configuration.json");
+    private final JsonConfig anotherConfig =
+            Factories
+            .configs()
+            .createConfig(this.getConfigDirectory() + "/players.json")
+}
+```
+
+The TridentSDK configuration is similar to that of the Bukkit configuration, however, we use JSON instead of YAML. JSON has a slightly more complex syntax than YAML, however, it does not have the same constraints (such as anti-tabs, spacing, etc). 
+
+Each `TridentPlugin` has a configuration directory to hold files the plugin may have. This can be accessed using `TridentPlugin#getgetConfigDirectory()`, returned as a `File`. This file is actually a folder.
+
+A configuration file can be created, or retrieved using the `ConfigFactory#createConfig(...)` method, from `Factories#configs()`. More information about `Factories` can be found in the [section below](#factories). If this config exists, the data will be loaded into the returned `JsonConfig` object. Else, it will be created for you. The path is preferred to have a `.json` file type.
+
+If you do not want your configuration, it can be deleted at the path specified in the JsonConfig.
+
+This is 
+
+## Factories
+
 # Benchmarks
 
 <aside class="notice">
