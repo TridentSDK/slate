@@ -386,7 +386,11 @@ The TridentSDK configuration is similar to that of the Bukkit configuration, how
 
 Each `TridentPlugin` has a configuration directory to hold files the plugin may have. This can be accessed using `TridentPlugin#getgetConfigDirectory()`, returned as a `File`. This file is actually a folder.
 
-A configuration file can be created, or retrieved using the `ConfigFactory#createConfig(...)` method, from `Factories#configs()`. More information about factories can be found
+A configuration file can be created, or retrieved using the `ConfigFactory#createConfig(...)` method, from `Factories#configs()`. More information about `Factories` can be found in the [section below](#factories). If this config exists, the data will be loaded into the returned `JsonConfig` object. Else, it will be created for you. The path is preferred to have a `.json` file type.
+
+If you do not want your configuration, it can be deleted at the path specified in the JsonConfig.
+
+This is 
 
 ## Factories
 

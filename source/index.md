@@ -382,6 +382,22 @@ public class Project extends TridentPlugin {
 }
 ```
 
+> Deleting your file
+
+```java
+try {
+    Files.delete(config.getPath());
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
+
+> Reloading the configuration
+
+```java
+config.reload();
+```
+
 The TridentSDK configuration is similar to that of the Bukkit configuration, however, we use JSON instead of YAML. JSON has a slightly more complex syntax than YAML, however, it does not have the same constraints (such as anti-tabs, spacing, etc). 
 
 Each `TridentPlugin` has a configuration directory to hold files the plugin may have. This can be accessed using `TridentPlugin#getgetConfigDirectory()`, returned as a `File`. This file is actually a folder.
@@ -390,7 +406,7 @@ A configuration file can be created, or retrieved using the `ConfigFactory#creat
 
 If you do not want your configuration, it can be deleted at the path specified in the JsonConfig.
 
-This is 
+Once the `JsonConfig` constructor is invoked, the object will automatically reload and store the configuration to memory. If the config is changed externally, such as by opening with a text editor, then you must reload yourself.
 
 ## Factories
 
@@ -407,7 +423,7 @@ This is a list of the currently benchmarked classes:
 - [Reflection benchmark](http://bit.ly/1vwutXc)
 - [ConcurrentHashMapV8 benchmark](http://bit.ly/1y90tml)
 - [ConcurrentCache benchmark](http://bit.ly/1A21o5O)
-- [EventManager benchmark](http://bit.ly/1y919IB)
+- [EventManager benchmark](http://bit.ly/1B3psZv)
 - [Scheduler benchmark](http://bit.ly/12fTNow)
 
 All benchmarks have a baseline benchmark at 0, called *control*. The traditional benchmark, before the update, used straight pounding on the data structure that was being benchmarked. In a realistic situation, this does not happen. Thankfully, we used [JMH](http://openjdk.java.net/projects/code-tools/jmh/), which is feature packed with everything we needed to performance test our classes.
