@@ -407,6 +407,22 @@ Some Listenables do not implement <code class="prettyprint">Ignorable</code>. Ch
 <span class="o">}</span>
 </code></pre>
 
+<blockquote>
+<p>Deleting your file</p>
+</blockquote>
+<pre><code class="highlight java"><span class="k">try</span> <span class="o">{</span>
+    <span class="n">Files</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">config</span><span class="o">.</span><span class="na">getPath</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
+
+<blockquote>
+<p>Reloading the configuration</p>
+</blockquote>
+<pre><code class="highlight java"><span class="n">config</span><span class="o">.</span><span class="na">reload</span><span class="o">();</span>
+</code></pre>
+
 <p>The TridentSDK configuration is similar to that of the Bukkit configuration, however, we use JSON instead of YAML. JSON has a slightly more complex syntax than YAML, however, it does not have the same constraints (such as anti-tabs, spacing, etc). </p>
 
 <p>Each <code class="prettyprint">TridentPlugin</code> has a configuration directory to hold files the plugin may have. This can be accessed using <code class="prettyprint">TridentPlugin#getgetConfigDirectory()</code>, returned as a <code class="prettyprint">File</code>. This file is actually a folder.</p>
@@ -415,7 +431,7 @@ Some Listenables do not implement <code class="prettyprint">Ignorable</code>. Ch
 
 <p>If you do not want your configuration, it can be deleted at the path specified in the JsonConfig.</p>
 
-<p>This is </p>
+<p>Once the <code class="prettyprint">JsonConfig</code> constructor is invoked, the object will automatically reload and store the configuration to memory. If the config is changed externally, such as by opening with a text editor, then you must reload yourself.</p>
 <h2 id='factories'>Factories</h2><h1 id='benchmarks'>Benchmarks</h1>
 <p><aside class="notice">
 Nerd section! You don&rsquo;t need this information to make a plugin!
@@ -429,7 +445,7 @@ Nerd section! You don&rsquo;t need this information to make a plugin!
 <li><a href="http://bit.ly/1vwutXc">Reflection benchmark</a></li>
 <li><a href="http://bit.ly/1y90tml">ConcurrentHashMapV8 benchmark</a></li>
 <li><a href="http://bit.ly/1A21o5O">ConcurrentCache benchmark</a></li>
-<li><a href="http://bit.ly/1y919IB">EventManager benchmark</a></li>
+<li><a href="http://bit.ly/1B3psZv">EventManager benchmark</a></li>
 <li><a href="http://bit.ly/12fTNow">Scheduler benchmark</a></li>
 </ul>
 
