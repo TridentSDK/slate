@@ -7,6 +7,7 @@ language_tabs:
 
 toc_footers:
   - <a href='https://tridentsdk.net'>TridentSDK Website</a>
+  - <a href="http://tridentsdk.github.io/Javadocs/">Javadocs</a>
   - <a href='https://github.com/TridentSDK'>TridentSDK on GitHub</a>
   - <a href='https://twitter.com/TridentSDK'>Follow Us on Twitter</a>
   - <a href='http://github.com/AgentTroll/slate'>Contribute to the Docs</a>
@@ -147,7 +148,7 @@ TridentSDK provides an excellent API for developing server modifications that ca
 
 As well as what is required in the prestiques, it is **imperative** that you know how to use Java and are familiar with it.
 
-After you have sufficient familiarity with Java, you may checkout our [Javadocs](http://tridentsdk.github.io/Javadocs/), but you may want to continue further with the documentation (there are lots of packages!) before starting.
+After you have sufficient familiarity with Java, you may checkout our javadocs from the link on the left, but you may want to continue further with the documentation (there are lots of packages!) before starting.
 
 ## Setup
 
@@ -304,7 +305,7 @@ public class Project implements Listener {
 > Implementing ignorance
 
 ```java
-Listenable event = new EntityDeathEvent(/* Your values */);
+Event event = new EntityDeathEvent(/* Your values */);
 EventManager.call(event);
 if (event.isIgnored()) {
     // Do what you need to do if the event is cancelled
@@ -323,7 +324,7 @@ import net.tridentsdk.api.event.Listener;
 
 public class Project implements Listener {
     public void onEvent(EntityDeathEvent event) {
-        event.ignore(true);
+        event.cancel(true);
     }
 }
 ```
@@ -334,7 +335,7 @@ Unlike the Bukkit event system, the Trident events are automatically registered.
 DO NOT register your events explicitly unless they do not work. Doing so will result in the event being called twice!
 </aside>
 
-In order to use this, the requirements for an event method is to have a `public void` method in a class implementing `Listener`, where Listener is `net.tridentsdk.api.event.Listener`, and the method must have a single parameter that is superclassed by Listenable.
+In order to use this, the requirements for an event method is to have a `public void` method in a class implementing `Listener`, where Listener is `net.tridentsdk.api.event.Listener`, and the method must have a single parameter that is superclassed by Event.
 
 <aside class="notice">
 You can prevent your class from being registered if implementing Listener and marked with `@IgnoreRegistration`.
@@ -354,12 +355,12 @@ Importance is valuable in APIs, where you'd want to check in with events, but no
 
 ----
 
-Events that `implement Ignorable` where Ignorable is `net.tridentsdk.api.event.Ignorable` can be used to prevent and implement cancellation functionality. To provide cancellation functionality for your event, simply `implement Ignorable`, overriding the two new methods to modify a `boolean` field, which is checked when the event is called. Events are called using [`EventManager#call(Listenable)`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/EventManager.html#call(net.tridentsdk.api.event.Listenable)). After calling, check the event object using `isIgnored()`, which returns `true` if the event should be cancelled.
+Events that `implement Cancellable` where Cancellable is `net.tridentsdk.api.event.Cancellable` can be used to prevent and implement cancellation functionality. To provide cancellation functionality for your event, simply `implement Cancellable`, overriding the two new methods to modify a `boolean` field, which is checked when the event is called. Events are called using [`EventManager#call(Event)`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/EventManager.html#call(net.tridentsdk.api.event.Event)). After calling, check the event object using `isIgnored()`, which returns `true` if the event should be cancelled.
 
-For the API user, you can choose to have the event do it's functionality specified in the cancellation policy by calling [`Ignorable#ignore(boolean)`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Ignorable.html#ignore(boolean)), where the boolean is true if the event should be cancelled, or false to prevent the event from being cancelled by lower priority listeners. You can check if the event has been cancelled before it reached the current listener using [`Ignorable#isIgnored()`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Ignorable.html#isIgnored()), which returns true if the listenable should be ignored.
+For the API user, you can choose to have the event do it's functionality specified in the cancellation policy by calling [`Cancellable#cancel(boolean)`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Cancellable.html#cancel(boolean)), where the boolean is true if the event should be cancelled, or false to prevent the event from being cancelled by lower priority listeners. You can check if the event has been cancelled before it reached the current listener using [`Cancellable#isIgnored()`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Cancellable.html#isIgnored()), which returns true if the event should be ignored.
 
 <aside class="warning">
-Some Listenables do not implement `Ignorable`. Check the docs!
+Some Events do not implement `Cancellable`. Check the docs!
 </aside>
 
 ## Configuration
@@ -398,6 +399,35 @@ try {
 config.reload();
 ```
 
+> Proper JSON format for TridentSDK
+
+```json
+{
+    // Normally you can't have comments
+    // but we parse without them
+    // use // comments in your configs
+
+    "here is a key": "this is a string value",
+    "append , after key-value": 10,
+    "you can have doubles too": 0.6,
+
+    "this is a section": {
+        "it has more key-values": 10,
+        "you can also have lists": 10
+    },
+
+    "this is a list": [
+        "there are values in lists",
+        "they have brackets instead of braces",
+        "and you still use commas to separate entries"
+    ],
+    
+    "usually you want no spaces in your keys": 10,
+    "ThisIsAKey": 10,
+    "your last entry doesn't have a comma": "enjoy using json"
+}
+```
+
 The TridentSDK configuration is similar to that of the Bukkit configuration, however, we use JSON instead of YAML. JSON has a slightly more complex syntax than YAML, however, it does not have the same constraints (such as anti-tabs, spacing, etc). 
 
 Each `TridentPlugin` has a configuration directory to hold files the plugin may have. This can be accessed using `TridentPlugin#getgetConfigDirectory()`, returned as a `File`. This file is actually a folder.
@@ -408,7 +438,47 @@ If you do not want your configuration, it can be deleted at the path specified i
 
 Once the `JsonConfig` constructor is invoked, the object will automatically reload and store the configuration to memory. If the config is changed externally, such as by opening with a text editor, then you must reload yourself.
 
+### Getting and setting
+
+Config manipulation is handled at `ConfigSection`, where get/set for all primitives, lists, objects, BigInteger, and BigDecimals in the config is supported. There is also `contains()`, parent/child section access, and programatic access to the JSON object form of the config, and saving capability. Trident parses without comments, so you can have `//` comments without a problem. The technical documentation for JSON can be found at the [Engineering Task Force website](http://www.ietf.org/rfc/rfc4627.txt). However, most developers can get by with the example provided on the right.
+
 ## Factories
+
+The TridentSDK factories API provides a creational access to the major components of TridentSDK, especially implemetation-specific facilities. Classes that relate to collections, configuration, executors, tasks, threads, and reflection can be accessed from Factories. Factories replaces the important methods from the original Bukkit class with a modular, easy to understand and access API.
+
+Factories is thread-safe. Initialization occurs before any access is done to the `Factories` class, as well as guarding by `HeldValueLatch`, which blocks until the main thread initializes all accessors inside of Factories.
+
+Here is a list of all facilities provided by `Factories`:
+  - Tasks
+    - Scheduler methods
+    - Async
+    - Sync
+    - Run now
+    - Run later
+    - Run repeatingly
+  - Threads
+    - Entity
+    - Player
+    - World
+    - Plugin
+    - Executors
+  - Configs
+    - Server config
+    - New `JsonConfig`
+    - New `JsonSection`
+  - Collections
+    - Caches
+    - Improved ConcurrentHashMap
+  - Reflection
+    - Classes
+    - Fields
+    - Methods
+    - Constructor
+  - Display information
+    - MOTD
+    - MOTD image/pictures
+    - Max players
+    - Player count
 
 # Benchmarks
 
