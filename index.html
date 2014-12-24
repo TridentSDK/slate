@@ -39,6 +39,7 @@
       </div>
         <ul class="toc-footer">
             <li><a href='https://tridentsdk.net'>TridentSDK Website</a></li>
+            <li><a href="http://tridentsdk.github.io/Javadocs/">Javadocs</a></li>
             <li><a href='https://github.com/TridentSDK'>TridentSDK on GitHub</a></li>
             <li><a href='https://twitter.com/TridentSDK'>Follow Us on Twitter</a></li>
             <li><a href='http://github.com/AgentTroll/slate'>Contribute to the Docs</a></li>
@@ -182,7 +183,7 @@ git clone https://github.com/TridentSDK/TridentSDK.git
 <h2 id='starting'>Starting</h2>
 <p>As well as what is required in the prestiques, it is <strong>imperative</strong> that you know how to use Java and are familiar with it.</p>
 
-<p>After you have sufficient familiarity with Java, you may checkout our <a href="http://tridentsdk.github.io/Javadocs/">Javadocs</a>, but you may want to continue further with the documentation (there are lots of packages!) before starting.</p>
+<p>After you have sufficient familiarity with Java, you may checkout our javadocs from the link on the left, but you may want to continue further with the documentation (there are lots of packages!) before starting.</p>
 <h2 id='setup'>Setup</h2>
 <blockquote>
 <p>Getting TridentSDK</p>
@@ -331,7 +332,7 @@ DO NOT register your commands explicitly unless they do not work. Doing so will 
 <blockquote>
 <p>Implementing ignorance</p>
 </blockquote>
-<pre><code class="highlight java"><span class="n">Listenable</span> <span class="n">event</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EntityDeathEvent</span><span class="o">(</span><span class="cm">/* Your values */</span><span class="o">);</span>
+<pre><code class="highlight java"><span class="n">Event</span> <span class="n">event</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EntityDeathEvent</span><span class="o">(</span><span class="cm">/* Your values */</span><span class="o">);</span>
 <span class="n">EventManager</span><span class="o">.</span><span class="na">call</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
 <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">isIgnored</span><span class="o">())</span> <span class="o">{</span>
     <span class="c1">// Do what you need to do if the event is cancelled</span>
@@ -350,7 +351,7 @@ DO NOT register your commands explicitly unless they do not work. Doing so will 
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Project</span> <span class="kd">implements</span> <span class="n">Listener</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="n">onEvent</span><span class="o">(</span><span class="n">EntityDeathEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">event</span><span class="o">.</span><span class="na">ignore</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">event</span><span class="o">.</span><span class="na">cancel</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -361,7 +362,7 @@ DO NOT register your commands explicitly unless they do not work. Doing so will 
 DO NOT register your events explicitly unless they do not work. Doing so will result in the event being called twice!
 </aside></p>
 
-<p>In order to use this, the requirements for an event method is to have a <code class="prettyprint">public void</code> method in a class implementing <code class="prettyprint">Listener</code>, where Listener is <code class="prettyprint">net.tridentsdk.api.event.Listener</code>, and the method must have a single parameter that is superclassed by Listenable.</p>
+<p>In order to use this, the requirements for an event method is to have a <code class="prettyprint">public void</code> method in a class implementing <code class="prettyprint">Listener</code>, where Listener is <code class="prettyprint">net.tridentsdk.api.event.Listener</code>, and the method must have a single parameter that is superclassed by Event.</p>
 
 <p><aside class="notice">
 You can prevent your class from being registered if implementing Listener and marked with <code class="prettyprint">@IgnoreRegistration</code>.
@@ -381,12 +382,12 @@ You can prevent your class from being registered if implementing Listener and ma
 
 <hr>
 
-<p>Events that <code class="prettyprint">implement Ignorable</code> where Ignorable is <code class="prettyprint">net.tridentsdk.api.event.Ignorable</code> can be used to prevent and implement cancellation functionality. To provide cancellation functionality for your event, simply <code class="prettyprint">implement Ignorable</code>, overriding the two new methods to modify a <code class="prettyprint">boolean</code> field, which is checked when the event is called. Events are called using <a href="http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/EventManager.html#call(net.tridentsdk.api.event.Listenable)"><code class="prettyprint">EventManager#call(Listenable)</code></a>. After calling, check the event object using <code class="prettyprint">isIgnored()</code>, which returns <code class="prettyprint">true</code> if the event should be cancelled.</p>
+<p>Events that <code class="prettyprint">implement Cancellable</code> where Cancellable is <code class="prettyprint">net.tridentsdk.api.event.Cancellable</code> can be used to prevent and implement cancellation functionality. To provide cancellation functionality for your event, simply <code class="prettyprint">implement Cancellable</code>, overriding the two new methods to modify a <code class="prettyprint">boolean</code> field, which is checked when the event is called. Events are called using <a href="http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/EventManager.html#call(net.tridentsdk.api.event.Event)"><code class="prettyprint">EventManager#call(Event)</code></a>. After calling, check the event object using <code class="prettyprint">isIgnored()</code>, which returns <code class="prettyprint">true</code> if the event should be cancelled.</p>
 
-<p>For the API user, you can choose to have the event do it&rsquo;s functionality specified in the cancellation policy by calling <a href="http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Ignorable.html#ignore(boolean)"><code class="prettyprint">Ignorable#ignore(boolean)</code></a>, where the boolean is true if the event should be cancelled, or false to prevent the event from being cancelled by lower priority listeners. You can check if the event has been cancelled before it reached the current listener using <a href="http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Ignorable.html#isIgnored()"><code class="prettyprint">Ignorable#isIgnored()</code></a>, which returns true if the listenable should be ignored.</p>
+<p>For the API user, you can choose to have the event do it&rsquo;s functionality specified in the cancellation policy by calling <a href="http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Cancellable.html#cancel(boolean)"><code class="prettyprint">Cancellable#cancel(boolean)</code></a>, where the boolean is true if the event should be cancelled, or false to prevent the event from being cancelled by lower priority listeners. You can check if the event has been cancelled before it reached the current listener using <a href="http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Cancellable.html#isIgnored()"><code class="prettyprint">Cancellable#isIgnored()</code></a>, which returns true if the event should be ignored.</p>
 
 <p><aside class="warning">
-Some Listenables do not implement <code class="prettyprint">Ignorable</code>. Check the docs!
+Some Events do not implement <code class="prettyprint">Cancellable</code>. Check the docs!
 </aside></p>
 <h2 id='configuration'>Configuration</h2>
 <blockquote>
@@ -423,6 +424,35 @@ Some Listenables do not implement <code class="prettyprint">Ignorable</code>. Ch
 <pre><code class="highlight java"><span class="n">config</span><span class="o">.</span><span class="na">reload</span><span class="o">();</span>
 </code></pre>
 
+<blockquote>
+<p>Proper JSON format for TridentSDK</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Normally</span><span class="w"> </span><span class="err">you</span><span class="w"> </span><span class="err">can't</span><span class="w"> </span><span class="err">have</span><span class="w"> </span><span class="err">comments</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">but</span><span class="w"> </span><span class="err">we</span><span class="w"> </span><span class="err">parse</span><span class="w"> </span><span class="err">without</span><span class="w"> </span><span class="err">them</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">use</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">comments</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">your</span><span class="w"> </span><span class="err">configs</span><span class="w">
+
+    </span><span class="s2">"here is a key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is a string value"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"append , after key-value"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"you can have doubles too"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6</span><span class="p">,</span><span class="w">
+
+    </span><span class="s2">"this is a section"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"it has more key-values"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"you can also have lists"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+
+    </span><span class="s2">"this is a list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"there are values in lists"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"they have brackets instead of braces"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"and you still use commas to separate entries"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+
+    </span><span class="s2">"usually you want no spaces in your keys"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ThisIsAKey"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"your last entry doesn't have a comma"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enjoy using json"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <p>The TridentSDK configuration is similar to that of the Bukkit configuration, however, we use JSON instead of YAML. JSON has a slightly more complex syntax than YAML, however, it does not have the same constraints (such as anti-tabs, spacing, etc). </p>
 
 <p>Each <code class="prettyprint">TridentPlugin</code> has a configuration directory to hold files the plugin may have. This can be accessed using <code class="prettyprint">TridentPlugin#getgetConfigDirectory()</code>, returned as a <code class="prettyprint">File</code>. This file is actually a folder.</p>
@@ -432,7 +462,45 @@ Some Listenables do not implement <code class="prettyprint">Ignorable</code>. Ch
 <p>If you do not want your configuration, it can be deleted at the path specified in the JsonConfig.</p>
 
 <p>Once the <code class="prettyprint">JsonConfig</code> constructor is invoked, the object will automatically reload and store the configuration to memory. If the config is changed externally, such as by opening with a text editor, then you must reload yourself.</p>
-<h2 id='factories'>Factories</h2><h1 id='benchmarks'>Benchmarks</h1>
+<h3 id='getting-and-setting'>Getting and setting</h3>
+<p>Config manipulation is handled at <code class="prettyprint">ConfigSection</code>, where get/set for all primitives, lists, objects, BigInteger, and BigDecimals in the config is supported. There is also <code class="prettyprint">contains()</code>, parent/child section access, and programatic access to the JSON object form of the config, and saving capability. Trident parses without comments, so you can have <code class="prettyprint">//</code> comments without a problem. The technical documentation for JSON can be found at the <a href="http://www.ietf.org/rfc/rfc4627.txt">Engineering Task Force website</a>. However, most developers can get by with the example provided on the right.</p>
+<h2 id='factories'>Factories</h2>
+<p>The TridentSDK factories API provides a creational access to the major components of TridentSDK, especially implemetation-specific facilities. Classes that relate to collections, configuration, executors, tasks, threads, and reflection can be accessed from Factories. Factories replaces the important methods from the original Bukkit class with a modular, easy to understand and access API.</p>
+
+<p>Factories is thread-safe. Initialization occurs before any access is done to the <code class="prettyprint">Factories</code> class, as well as guarding by <code class="prettyprint">HeldValueLatch</code>, which blocks until the main thread initializes all accessors inside of Factories.</p>
+
+<p>Here is a list of all facilities provided by <code class="prettyprint">Factories</code>:
+  - Tasks
+    - Scheduler methods
+    - Async
+    - Sync
+    - Run now
+    - Run later
+    - Run repeatingly
+  - Threads
+    - Entity
+    - Player
+    - World
+    - Plugin
+    - Executors
+  - Configs
+    - Server config
+    - New <code class="prettyprint">JsonConfig</code>
+    - New <code class="prettyprint">JsonSection</code>
+  - Collections
+    - Caches
+    - Improved ConcurrentHashMap
+  - Reflection
+    - Classes
+    - Fields
+    - Methods
+    - Constructor
+  - Display information
+    - MOTD
+    - MOTD image/pictures
+    - Max players
+    - Player count</p>
+<h1 id='benchmarks'>Benchmarks</h1>
 <p><aside class="notice">
 Nerd section! You don&rsquo;t need this information to make a plugin!
 </aside></p>
