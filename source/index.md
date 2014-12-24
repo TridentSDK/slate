@@ -449,6 +449,7 @@ The TridentSDK factories API provides a creational access to the major component
 Factories is thread-safe. Initialization occurs before any access is done to the `Factories` class, as well as guarding by `HeldValueLatch`, which blocks until the main thread initializes all accessors inside of Factories.
 
 Here is a list of all facilities provided by `Factories`:
+
   - Tasks
     - Scheduler methods
     - Async
