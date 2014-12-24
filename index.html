@@ -469,37 +469,58 @@ Some Events do not implement <code class="prettyprint">Cancellable</code>. Check
 
 <p>Factories is thread-safe. Initialization occurs before any access is done to the <code class="prettyprint">Factories</code> class, as well as guarding by <code class="prettyprint">HeldValueLatch</code>, which blocks until the main thread initializes all accessors inside of Factories.</p>
 
-<p>Here is a list of all facilities provided by <code class="prettyprint">Factories</code>:
-  - Tasks
-    - Scheduler methods
-    - Async
-    - Sync
-    - Run now
-    - Run later
-    - Run repeatingly
-  - Threads
-    - Entity
-    - Player
-    - World
-    - Plugin
-    - Executors
-  - Configs
-    - Server config
-    - New <code class="prettyprint">JsonConfig</code>
-    - New <code class="prettyprint">JsonSection</code>
-  - Collections
-    - Caches
-    - Improved ConcurrentHashMap
-  - Reflection
-    - Classes
-    - Fields
-    - Methods
-    - Constructor
-  - Display information
-    - MOTD
-    - MOTD image/pictures
-    - Max players
-    - Player count</p>
+<p>Here is a list of all facilities provided by <code class="prettyprint">Factories</code>:</p>
+
+<ul>
+<li>Tasks
+
+<ul>
+<li>Scheduler methods</li>
+<li>Async</li>
+<li>Sync</li>
+<li>Run now</li>
+<li>Run later</li>
+<li>Run repeatingly</li>
+</ul></li>
+<li>Threads
+
+<ul>
+<li>Entity</li>
+<li>Player</li>
+<li>World</li>
+<li>Plugin</li>
+<li>Executors</li>
+</ul></li>
+<li>Configs
+
+<ul>
+<li>Server config</li>
+<li>New <code class="prettyprint">JsonConfig</code></li>
+<li>New <code class="prettyprint">JsonSection</code></li>
+</ul></li>
+<li>Collections
+
+<ul>
+<li>Caches</li>
+<li>Improved ConcurrentHashMap</li>
+</ul></li>
+<li>Reflection
+
+<ul>
+<li>Classes</li>
+<li>Fields</li>
+<li>Methods</li>
+<li>Constructor</li>
+</ul></li>
+<li>Display information
+
+<ul>
+<li>MOTD</li>
+<li>MOTD image/pictures</li>
+<li>Max players</li>
+<li>Player count</li>
+</ul></li>
+</ul>
 <h1 id='benchmarks'>Benchmarks</h1>
 <p><aside class="notice">
 Nerd section! You don&rsquo;t need this information to make a plugin!
