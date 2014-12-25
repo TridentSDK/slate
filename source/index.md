@@ -24,13 +24,13 @@ search: true
 Welcome to the TridentSDK Documentation site.
 </aside>
 
-TridentSDK is a team composed of absolute best Java developers from the Bukkit API. Trident is a completely cleanroom reimplmentation of the Minecraft server, which will improve server performance, flexibility, and simplicity. 
+The TridentSDK team is composed of a group of Java developers from the Bukkit API. Trident is a cleanroom implementation of the Minecraft server, which will improve server performance, flexibility, and simplicity. 
 
-TridentSDK is the successor to the Bukkit/Spigot projects. Following the news of the "takeover" of the Bukkit project and the DMCA takedown of Bukkit, and therefore Spigot (we are quite aware of binary patches), we realized that someone needs to step up and create the best of server software for Minecraft after the decline of both projects. The result was TridentSDK, the development kit that is implemented by the server, Trident.
+TridentSDK is a successor to the Bukkit/Spigot projects. Following the news of the "takeover" of the Bukkit project and the DMCA takedown of Bukkit, and therefore Spigot (we are quite aware of binary patches), we realized that someone needs to step up and create a server for Minecraft after the decline of both projects. The result was TridentSDK, the development kit that is implemented by the server, Trident.
 
 ## How to use the documentation
 
-You may be seeing just annotations in some parts of this document. This is because there are language tabs where you can switch which language the examples are in. Unlisted means that there is no support for the particular language (which are shell and java at the moment). If you aren't seeing the code, on mobile, open the nav and scroll up the sidebar, then press the other language. If you are on a desktop, on the top right is the language tabs, just click the other one.
+You may be seeing just annotations in some parts of this document. This is because there are language tabs where you can switch which language the examples are in. Unlisted means that there is no support for the particular language (which are shell and Java at the moment). If you aren't seeing the code on mobile, scroll up the sidebar, then press the other language. If you are on a desktop, on the top right is the language tabs, simply click the tab you wish to view.
 
 # Features
 
@@ -45,9 +45,9 @@ Pace | Development occurs nearly everyday | &#x2717;
 
 # Installation
 
-Because TridentSDK is currently a high-paced work in progress, and the reimplementation of the entire Minecraft server is time-taking, there are no builds availible to use. The server does not work at the moment. You will need to download the source and compile off of eachother.
+Because TridentSDK is currently a high-paced work in progress, and the reimplementation of the entire Minecraft server is time-consuming, there are no builds available to use. The server does not work at the moment. You will need to download the source and compile it yourself.
 
-## Prestiques
+## Prerequisites
 
 To install Trident, you should have the following installed on your system:
 
@@ -92,11 +92,11 @@ After completing the above steps, you should be in the starting directory, with 
 
 #### Command not found
 
-TridentSDK is developed primarily on Unix (Ubuntu, Debian) systems. If you get this, look up an alternative to your command on your OS.
+TridentSDK is developed primarily on Unix-based (Ubuntu, Debian) systems. Other Operating Systems may have directions that differ slightly, look them up for your own Operating System.
 
-If your command starts with `git`, `mvn`, or `javac`, then you either need to install, or reinstall the tools in [Prestiques](#prestiques).
+If your command starts with `git`, `mvn`, or `javac`, then you either need to install, or reinstall the tools in [Prerequisites](#prestiques).
 
-Another problem may be that you have not set your PATH environment variables yet. This is covered on the Presitques links.
+Another problem may be that you have not set your PATH environment variables yet. This is covered in the Prerequisites links.
 
 #### Paths cannot be resolved
 
@@ -104,11 +104,11 @@ Just edit `..` to your primary directory where you executed your git commands at
 
 #### Where is my jar file?
 
-It's in the working directory of the command line. For Unix, this is often in your Home directory, and for Windows, this is in the user directory. Therefore, I recommend `cd`'ing to your desktop or other place where you know exactly where all the files are going to go and how they are organized.
+It's in the working directory of the command line. For Unix-based systems, this is often in your Home directory. For Windows, this is the user directory. Therefore, it is recommend to change directory to your desktop or other place that is convenient and memorable.
 
 ## Updating
 
-We are currently planning an update mechanism built into the server in the future. However, at the current moment, it has not been implemented. Open up your command line and execute the commands shown.
+We are currently planning an update mechanism built into the server. However, it has not yet been implemented. Using Trident requires executing the above steps, a monolithic (i.e. jar-file) release will be available in the near future.
 
 ```shell
 # Remove old files
@@ -124,31 +124,36 @@ git clone https://github.com/TridentSDK/TridentSDK.git
 
 # Contributing
 
-On the left, near the bottom, you can see a few links. Currently, there are 3 portions of the project that help would be needed in, 2 which are effective as of now.
+On the left, near the bottom, there are a few links. Currently, there are 3 portions of the project that are open to community involvement.
 
-First, we will need help with the source. The highest priority right now is player joining, which we have the protocol and world loading facitlities that are mature enough to be used for the purpose. The protocol is very elusive, and if you have used it before, help would be appreciated. Head over to our GitHub page, or tweet to us to find out how to help.
+### Code
+First, we need help with the source. The highest priority right now is player joining, which we have the protocol and world loading facilities that are mature enough to be used for the purpose. The protocol is very elusive, and if you have used it before, help would be appreciated. Head over to our GitHub page, or tweet to us to find out how to help (pull requests on our repository are always welcome!).
 
-Second, we will need help with documentation. There are two places where documentation is needed - here, and on the source. Javadocs are sparingly done, as forward development and getting performance testing and finishing the server basics is the main priority. We could use some extra hands on source documentation. The documentation here is how to use the API, not what each method does. Head over to the Contribute to the Docs and submit a PR to the index.md on master, and we can recompile the site. Or, head over to the GitHub and submit a PR to add documentation comments to the methods.
+### Documentation
+Second, we will need help with documentation. There are two places where documentation is needed - here, and in the source. Javadocs are largely incomplete, as moving forward with development, getting performance testing, and finishing the server basics are of highest priority. We would greatly appreciate extra hands on source documentation. The documentation here is how to use the API, not what each method does. Head over to the Contribute to the Docs and submit a PR to the index.md on master, and we can recompile the site. Or, head over to the GitHub and submit a PR to add documentation comments to the methods.
 
-Third, and our lowest priority, is commumnity administration. As we do not have a large community yet, you may help by sharing TridentSDK with your friends and users, and later on, when TridentSDK grows, you can apply for administration positions. 
+### Community
+Third is community administration. As we do not have a large community yet, the greatest help is achieved through sharing TridentSDK with your friends and other users. Later on, when TridentSDK becomes mature, you may apply for administrative positions. 
 
 # API
 
-TridentSDK provides an excellent API for developing server modifications that can be used to modify game play that is determined by the server.
+TridentSDK provides an extensive API for developing server modifications that can be used to modify game play that is controlled by the server. Trident does not provide for client side modifications.
 
-## Prestiques
+## Prerequisites
 
 * [A Java IDE](http://en.wikibooks.org/wiki/Java_Programming/Java_IDEs)
 * [JDK 7](https://docs.oracle.com/javase/7/docs/webnotes/install/) 
 * [Maven](http://maven.apache.org/download.cgi)
 * [Git](http://git-scm.com/downloads)
-* Knowledge of the Java language
+* 'Thorough understanding of the Java Language'
 
 ## Starting
 
-As well as what is required in the prestiques, it is **imperative** that you know how to use Java and are familiar with it.
+As well as the items in the prerequisites above, it is **imperative** that you have a thorough understanding of the Java programming language.
 
-After you have sufficient familiarity with Java, you may checkout our javadocs from the link on the left, but you may want to continue further with the documentation (there are lots of packages!) before starting.
+While Trident can be used with any IDE, as it is simply a library, the TridentSDK team recommends Intellij IDEA from JetBrains.
+
+Before getting started, you should read over the Javadocs for Trident (link on the lower left of this page).
 
 ## Setup
 
@@ -160,20 +165,20 @@ cd TridentSDK
 mvn clean install
 ```
 
-First, you would want to pull from our `TridentSDK` repo, and compile it. The dependency can be found in the `target` folder after running `mvn clean install`. 
+To begin, pull from our `TridentSDK` repository and compile it. The jarfile can be found in the `target` folder after running `mvn clean install`. 
 
-Then, start up your IDE, which you should learn how to use from the distributor's website. If you do not know how to use your IDE (which is used when practicing Java), go back to learning Java. Otherwise, create a new project, and add the TridentSDK dependency to your workspace.
+Then, start up your IDE, you should be familiar with your development environment. Create a new project, and add the TridentSDK dependency to your workspace.
 
 ## Creating the main class
 
 > Extend `TridentPlugin`
 
 ```java
-package net.tridentsdk.project;
+package com.example.smite;
 
 import net.tridentsdk.plugin.TridentPlugin;
 
-public class Project extends TridentPlugin {
+public class Smite extends TridentPlugin {
 
 }
 ```
@@ -181,13 +186,13 @@ public class Project extends TridentPlugin {
 > Annotate with `PluginDescription`
 
 ```java
-package net.tridentsdk.project;
+package com.example.smite;
 
 import net.tridentsdk.plugin.TridentPlugin;
 import net.tridentsdk.plugin.annotation.PluginDescription;
 
 @PluginDescription(name = "Project", author = "Pierre C", version = "6.9")
-public class Project extends TridentPlugin {
+public class Smite extends TridentPlugin {
 
 }
 ```
@@ -195,13 +200,13 @@ public class Project extends TridentPlugin {
 > Use lifecycle methods
 
 ```java
-package net.tridentsdk.project;
+package com.example.smite;
 
 import net.tridentsdk.plugin.TridentPlugin;
 import net.tridentsdk.plugin.annotation.PluginDescription;
 
 @PluginDescription(name = "Project", author = "Pierre C", version = "6.9")
-public class Project extends TridentPlugin {
+public class Smite extends TridentPlugin {
     @Override public void onEnable() {
     }
 
@@ -213,43 +218,41 @@ public class Project extends TridentPlugin {
 }
 ```
 
-The first step in development of a Trident plugin is to create the main class. This is where all of your plugin's functional aspects are initialized and started. Create a new package titled with your domain, backwards. For example, if you own `example.com`, then your package would be `com.example.project`, and project can be changed to your project name. This does not affect functionality. If you do not own a domain, you can use your email. For example, if you owned `someone@random.com`, then use `com.random.someone`. If you have a `-` character, use an underscore (`_`) instead.
+The first step in development of a Trident plugin is to create the main class. This is where all of your plugin's functional aspects are initialized. Create a new package titled with your domain, backwards. For example, if you own `example.com`, then your package would be `com.example.&lt;project&gt;`, where `project` is the project's name, in our example it is `smite` . This does not affect functionality. If you do not own a domain, you may use your email. For example, if you owned `someone@random.com`, then use `com.random.someone`. If your email contains a `-` character, use an underscore (`_`) instead.
 
 <aside class="warning">
-DO NOT use the package name `net.tridentsdk.*`. Anything starting with that package will not have its classes loaded, therefore rendering the plugin useless.
-
-In the code examples, a `net.tridentsdk` domain is used for example ONLY.
+DO NOT use the package name `net.tridentsdk.*`. Any package name beginning with this pattern will not have its classes loaded, thereby rendering the plugin useless.
 </aside>
 
-Then, create a new Java class, which is named your project name. The class name does not affect functionality. After creating it, you would `extend TridentPlugin`, where TridentPlugin is `net.tridentsdk.plugin.TridentPlugin`.
+Then, create a new Java class, with a meaningful name (the class name does not affect functionality). This class must extend TridentPlugin (i.e. declaration ends in `extends TridentPlugin`).
 
 ----
 
-Then, you would add a PluginDescription annotation to your class to mark the load parameters.
+Then, you must add a PluginDescription annotation to your class to mark the plugin parameters.
 
 Of course, replace the name with the name of the project (does not affect functionality), the author with your name/username/online name/alias (does not affect functionality), and the version with the plugin version (does not affect functionality).
 
-In reality, if this is a quick test plugin, only the `name` field is required to be filled.
+The only required field in a PluginDescription annotation is the plugin name (`name`).
 
 ----
 
-`TridentPlugin` provides several methods that are executed during various events in a plugin lifecycle. They are called in this order: `onLoad`, `onEnable`, `onDisable`. `onLoad` is called after the Plugin object is created. `onEnable` is called when the plugin is enabled and starts to be provided with runtime dependecies and after class load and initialization. Finally, `onDisable` is called when the plugin is disabled, because of an error or because of a server shutdown.
+`TridentPlugin` provides several methods that are executed during various events in a plugin's lifecycle. They are called in this order: `onLoad`, `onEnable`, `onDisable`. `onLoad` is called shortly after the plugin object is created, before any world loading takes place, and before any plugins are enabled. `onEnable` is called when the plugin is enabled, after Trident has finished initializing, worlds are loaded, and all plugins have had their `onLoad` method invoked. Finally, `onDisable` is called when the plugin is disabled, either due to an error or server shutdown.
 
-These methods are overridden to execute the given actions during the lifecycle events. They are not required, and if you don't need them, you should not override them, as that would not make sense.
+These methods may be overridden to execute code at specific lifecycle events. They are not required, and if you don't need them, you should not override them.
 
 ## Commands
 
 > Implementing a proper command
 
 ```java
-package net.tridentsdk.project;
+package com.example.smite;
 
 import net.tridentsdk.api.entity.living.Player;
 import net.tridentsdk.plugin.cmd.Command;
 import net.tridentsdk.plugin.cmd.CommandIssuer;
 import net.tridentsdk.plugin.cmd.ConsoleSender;
 
-public class Project extends Command {
+public class Smite extends Command {
     @Override public void handlePlayer(Player player, String arguments, String alias) {
     }
 
@@ -262,19 +265,23 @@ public class Project extends Command {
 ```
 
 <aside class="warning">
-DO NOT register your commands explicitly unless they do not work. Doing so will result in the command being called twice!
+'DO NOT' register your commands explicitly unless they do not work. Doing so may result in your command being executed twice.
 </aside>
 
-Commands are implemented by subclassing the `Command` class, at `net.tridentsdk.plugin.cmd.Command`. In order to handle commands, there are 3 provided methods to check for commands. They are `handle`, `handlePlayer`, and `handleConsole`. At the time of writing, TridentSDK does not support Command Blocks. The `handle` method handles all commands that are passed to it. `handlePlayer` only handles player executed commands, and `handleConsole` only handles console commands. 
+Commands are implemented by subclassing the `Command` class (net.tridentsdk.plugin.cmd.Command). In order to handle commands, there are 3 methods provided to check for commands. They are `handle`, `handlePlayer`, and `handleConsole`. The `handle` method is invoked when anything executes this command (e.g. command block, player, console). `handlePlayer` only handles player executed commands, and `handleConsole` only handles console commands. 
 
-The first parameter passed to the handle method is the issuer of the command. This can be a player or console in `handle`, which is checked by using `instanceof` for the Player or ConsoleSender classes. The second parameters is args, which is unused at the time. Finally, the alias is the command executed, the first word after `/` in the command box. Each has its documentation at the respective classes. 
+<aside class="notice">
+If a class has both a 'handle' and 'handlePlayer' method, both will be invoked when a player executes a command (`handleConsole` has similar behavior). The 'handlePlayer' and 'handleConsole' methods are largely provided as convenience methods and are not mutually exclusive to the 'handle' method being invoked.
+</aside>
+
+The first parameter passed to the handle method is the issuer of the command. This can be any subclass of CommandIssuer in `handle`, which may be checked by using `instanceof` for the Player or ConsoleSender classes (or any other subclasses). The second parameter is args, which is the line the sender entered, without the command itself (for example, /basic spawn would have args `spawn`, and /smite leetplayer 100 would have args `leetplayer 100`). Finally, the alias is the command executed, the first word after `/` in the command box. Each argument has its own documentation in the pertinent classes. 
 
 ## Events
 
 > This is a proper event listener
 
 ```java
-package net.tridentsdk.project;
+package com.example.smite;
 
 import net.tridentsdk.api.event.entity.EntityDeathEvent;
 import net.tridentsdk.api.event.Listener;
@@ -288,21 +295,21 @@ public class Project implements Listener {
 > This is a proper way to prioritize events:
 
 ```java
-package net.tridentsdk.project;
+package com.example.smite;
 
 import net.tridentsdk.api.event.entity.EntityDeathEvent;
 import net.tridentsdk.api.event.Call;
 import net.tridentsdk.api.event.Importance;
 import net.tridentsdk.api.event.Listener;
 
-public class Project implements Listener {
+public class SmiteListener implements Listener {
     @Call(Importance.LOWEST)
     public void onEvent(EntityDeathEvent event) {
     }
 }
 ```
 
-> Implementing ignorance
+> Implementing event ignorance
 
 ```java
 Event event = new EntityDeathEvent(/* Your values */);
@@ -317,39 +324,39 @@ if (event.isIgnored()) {
 > Ignoring events
 
 ```java
-package net.tridentsdk.project;
+package com.example.smite;
 
 import net.tridentsdk.api.event.entity.EntityDeathEvent;
 import net.tridentsdk.api.event.Listener;
 
-public class Project implements Listener {
+public class SmiteListener implements Listener {
     public void onEvent(EntityDeathEvent event) {
         event.cancel(true);
     }
 }
 ```
 
-Unlike the Bukkit event system, the Trident events are automatically registered. You should not explicity register your events.
+Unlike the Bukkit event system, events in Trident are automatically registered. You should not explicitly register your events.
 
 <aside class="warning">
-DO NOT register your events explicitly unless they do not work. Doing so will result in the event being called twice!
+DO NOT register your events explicitly unless they do not work otherwise. Doing so may result in the event being called twice.
 </aside>
 
-In order to use this, the requirements for an event method is to have a `public void` method in a class implementing `Listener`, where Listener is `net.tridentsdk.api.event.Listener`, and the method must have a single parameter that is superclassed by Event.
+The requirements for an event method is that it must be a publicly visible method that returns void and be in a class implementing `Listener` (`net.tridentsdk.api.event.Listener), and the method must have a single parameter that is superclassed by Event.
 
 <aside class="notice">
-You can prevent your class from being registered if implementing Listener and marked with `@IgnoreRegistration`.
+You can prevent your method from being registered in a class implementing Listener by marking the method with `@IgnoreRegistration`, alternatively, classes may also be marked `@IgnoreRegistration` to prevent any methods in the class from being used as listeners.
 </aside>
 
-Events are usually self-descriptive by class name, for example, EntityDeathEvent occurs when an entity dies, of course, it must be a LivingEntity.
+Events usually have self-descriptive class names, for example, EntityDeathEvent occurs when an entity dies, of course, it must be a LivingEntity.
 
 Events can be removed from the event caller list using [`EventManager#unregister(Listener)`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/EventManager.html#unregister(net.tridentsdk.api.event.Listener)), where `Listener` represents an instance of the listener that was registered into the list.
 
 ----
 
-Event priorities are annotated by a `@Call` annotation, with an `Importance` parameter.
+Event priorities are annotated by a `@Call` annotation, which takes a single parameter, `Importance`.
 
-Importance events are called in this order: `LOWEST`, `LOW`, `MEDIUM`, `HIGH`, `HIGHEST`. This occurs because the most important events must edit what the other plugins have set to the event. If 2 events have the same priority, then they are registered by which plugin loads first. If the event does not have a `@Call` annotation, then the importance is automatically set to `Importance.MEDIUM`.
+Events are called in this order: `LOWEST`, `LOW`, `MEDIUM`, `HIGH`, `HIGHEST`. This occurs because the most important events must edit what the other plugins have set to the event. If 2 events have the same priority, then there is no guaranteed order. If the event does not have a `@Call` annotation, then the importance is automatically set to `Importance.MEDIUM`.
 
 Importance is valuable in APIs, where you'd want to check in with events, but not edit them, and allow other plugins to view event modifications made by the API, as well as providing higher level plugins to have control over the event result.
 
@@ -357,7 +364,7 @@ Importance is valuable in APIs, where you'd want to check in with events, but no
 
 Events that `implement Cancellable` where Cancellable is `net.tridentsdk.api.event.Cancellable` can be used to prevent and implement cancellation functionality. To provide cancellation functionality for your event, simply `implement Cancellable`, overriding the two new methods to modify a `boolean` field, which is checked when the event is called. Events are called using [`EventManager#call(Event)`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/EventManager.html#call(net.tridentsdk.api.event.Event)). After calling, check the event object using `isIgnored()`, which returns `true` if the event should be cancelled.
 
-For the API user, you can choose to have the event do it's functionality specified in the cancellation policy by calling [`Cancellable#cancel(boolean)`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Cancellable.html#cancel(boolean)), where the boolean is true if the event should be cancelled, or false to prevent the event from being cancelled by lower priority listeners. You can check if the event has been cancelled before it reached the current listener using [`Cancellable#isIgnored()`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Cancellable.html#isIgnored()), which returns true if the event should be ignored.
+For the API user, you may cancel an event, which will create behavior specified in the cancellation policy by calling [`Cancellable#cancel(boolean)`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Cancellable.html#cancel(boolean)). The boolean value is true if the event should be cancelled, or false to prevent the event from being cancelled by lower priority listeners. You can check if the event has been cancelled before it reached the current listener using [`Cancellable#isIgnored()`](http://tridentsdk.github.io/Javadocs/net/tridentsdk/api/event/Cancellable.html#isIgnored()), which returns true if the event should be ignored.
 
 <aside class="warning">
 Some Events do not implement `Cancellable`. Check the docs!
@@ -403,9 +410,12 @@ config.reload();
 
 ```json
 {
-    // Normally you can't have comments
-    // but we parse without them
-    // use // comments in your configs
+    // Normally JSON does not allow comments
+    // however, Trident's JSON parser 
+    // allows for comments
+    // use two forward slashes to create 
+    // comments in your configuration,
+    // similar to this comment
 
     "here is a key": "this is a string value",
     "append , after key-value": 10,
@@ -428,25 +438,25 @@ config.reload();
 }
 ```
 
-The TridentSDK configuration is similar to that of the Bukkit configuration, however, we use JSON instead of YAML. JSON has a slightly more complex syntax than YAML, however, it does not have the same constraints (such as anti-tabs, spacing, etc). 
+The TridentSDK configuration is similar to that of the Bukkit configuration, however, we use JSON instead of YAML. JSON has a slightly more complex syntax than YAML, however, it does not have the same constraints (such as lack of tabs, spacing, etc). 
 
-Each `TridentPlugin` has a configuration directory to hold files the plugin may have. This can be accessed using `TridentPlugin#getgetConfigDirectory()`, returned as a `File`. This file is actually a folder.
+Each `TridentPlugin` has a configuration directory to hold files the plugin may have. This can be accessed using `TridentPlugin#getConfigDirectory()`, returned as a `File`. This file is actually a folder.
 
-A configuration file can be created, or retrieved using the `ConfigFactory#createConfig(...)` method, from `Factories#configs()`. More information about `Factories` can be found in the [section below](#factories). If this config exists, the data will be loaded into the returned `JsonConfig` object. Else, it will be created for you. The path is preferred to have a `.json` file type.
+A configuration file can be created, or retrieved using the `ConfigFactory#createConfig(...)` method, from `Factories#configs()`. More information about `Factories` can be found in the [section below](#factories). If the config specified in createConfig already exists, the data will be loaded into the returned `JsonConfig` object. Otherwise, it will be created for you. The file should have a `.json` file type.
 
-If you do not want your configuration, it can be deleted at the path specified in the JsonConfig.
+If you wish to remove your configuration, it can be deleted at the path specified in the JsonConfig.
 
-Once the `JsonConfig` constructor is invoked, the object will automatically reload and store the configuration to memory. If the config is changed externally, such as by opening with a text editor, then you must reload yourself.
+Once the `JsonConfig` constructor is invoked, the object will automatically reload and store the configuration to memory. If the config is changed externally, such as by opening with a text editor, then you must reload the configuration file yourself.
 
 ### Getting and setting
 
-Config manipulation is handled at `ConfigSection`, where get/set for all primitives, lists, objects, BigInteger, and BigDecimals in the config is supported. There is also `contains()`, parent/child section access, and programatic access to the JSON object form of the config, and saving capability. Trident parses without comments, so you can have `//` comments without a problem. The technical documentation for JSON can be found at the [Engineering Task Force website](http://www.ietf.org/rfc/rfc4627.txt). However, most developers can get by with the example provided on the right.
+Configuration manipulation is handled at `ConfigSection`, where get/set for all primitives, lists, objects, BigInteger, and BigDecimals in the configuration is supported. There is also `contains()`, parent/child section access, and programmatic access to the JSON object form of the configuration, and saving capability. Trident parses without comments, so you can have `//` comments without a problem. The technical documentation for JSON can be found at the [Engineering Task Force website](http://www.ietf.org/rfc/rfc4627.txt). However, most developers can get by with the example provided on the right.
 
 ## Factories
 
-The TridentSDK factories API provides a creational access to the major components of TridentSDK, especially implemetation-specific facilities. Classes that relate to collections, configuration, executors, tasks, threads, and reflection can be accessed from Factories. Factories replaces the important methods from the original Bukkit class with a modular, easy to understand and access API.
+The TridentSDK factories API provides a factory to access many of the major components of TridentSDK, especially implementation-specific facilities. Classes that relate to collections, configuration, executors, tasks, threads, and reflection can be accessed from Factories. Factories replace the important methods from the original Bukkit class with a modular API that is easy to understand and access.
 
-Factories is thread-safe. Initialization occurs before any access is done to the `Factories` class, as well as guarding by `HeldValueLatch`, which blocks until the main thread initializes all accessors inside of Factories.
+Factories are thread-safe. Initialization occurs before any access is done to the `Factories` class, as well as guarding by `HeldValueLatch`, which blocks until the main thread initializes all accessors inside of Factories.
 
 Here is a list of all facilities provided by `Factories`:
 
@@ -456,7 +466,7 @@ Here is a list of all facilities provided by `Factories`:
     - Sync
     - Run now
     - Run later
-    - Run repeatingly
+    - Run repeatedly
   - Threads
     - Entity
     - Player
@@ -497,17 +507,17 @@ This is a list of the currently benchmarked classes:
 - [EventManager benchmark](http://bit.ly/1B3psZv)
 - [Scheduler benchmark](http://bit.ly/12fTNow)
 
-All benchmarks have a baseline benchmark at 0, called *control*. The traditional benchmark, before the update, used straight pounding on the data structure that was being benchmarked. In a realistic situation, this does not happen. Thankfully, we used [JMH](http://openjdk.java.net/projects/code-tools/jmh/), which is feature packed with everything we needed to performance test our classes.
+All benchmarks have a baseline benchmark at 0, called *control*. The traditional benchmark, before the update, used straight pounding on the data structure that was being benchmarked. In a realistic situation, this does not happen. Thankfully, we used [JMH](http://openjdk.java.net/projects/code-tools/jmh/), which is feature packed with everything we need to performance test our classes.
 
-One of the features was the `Blackhole` class, which is used in the benchmarking infrastructure to prevent optimization of the harness. Then, there was `Blackhole.consumeCPU(int)`. This is used to amoritize the test pounding on the harness, which was used in the tests to improve realism and accuracy of the calcuations. 
+One of the features was the `Blackhole` class, which is used in the benchmarking infrastructure to prevent optimization of the harness. Then, there was `Blackhole.consumeCPU(int)`. This is used to amortize the test pounding on the harness, which was used in the tests to improve realism and accuracy of the calculations. 
  
-The graphs were a result of 4 hours of work to experiment with Google Charts's [excellent API](https://developers.google.com/chart/). However, there were a couple things that may seem to be off at first. The primary thing you'd see is that there are *negative values*. How is this possible? Let's begin by examining how the charts are generated from the data.
+The graphs were a result of 4 hours of work experimenting with Google Charts' [excellent API](https://developers.google.com/chart/). However, there were a couple things that may seem to be off at first. The most apparent incongruity is that there are *negative values*. How is this possible? Let's begin by examining how the charts are generated from the data.
 
-The charts are generated by running `Benchmarks.chart(Benchmarks.parse(Collection<RunResult>, String)`. The `parse` method iterates through the results to find the times and label of the benchmarks. All benchmarks are run with a `control` group, which measures the CPU cycles taken up by the amoritization method discussed above. Since each harness runs the consumption method, we have the actual benchmark PLUS the cost of running the amoritization. Therefore, we plot the data by subtracting the amoritization cost from the total benchmark. HOWEVER, this is not totally accurate. The amoritization harness runs independently of the other harnesses, therefore, it may be larger or smaller than the benchmarked value of the particular harness.
+The charts are generated by running `Benchmarks.chart(Benchmarks.parse(Collection<RunResult>, String)`. The `parse` method iterates through the results to find the times and label of the benchmarks. All benchmarks are run with a `control` group, which measures the CPU cycles taken up by the amortization method discussed above. Since each harness runs the consumption method, we have the actual benchmark PLUS the cost of running the amortization. Therefore, we plot the data by subtracting the amortization cost from the total benchmark. HOWEVER, this is not totally accurate. The amortization harness runs independently of the other harnesses, therefore, it may be larger or smaller than the benchmarked value of the particular harness.
 
-Secondly, you may see that if you run the method several times, you'd get different colors (yay). This WILL NOT affect the data produced by the graph. The colors are randomized when generated, so that will not comprimise the integrity or the accuracy of the data gathered during the test.
+Secondly, you may see that if you run the method several times, you'd get different colors (yay). This WILL NOT affect the data produced by the graph. The colors are randomized when generated, so that will not compromise the integrity or the accuracy of the data gathered during the test.
 
-Third, you might also see that control is a straight line... Yes, it is a straight line if you look at the URL data. Control, again, is the amoritization cost, which is subtracted by the amoritization cost when plotted... So the amoritization cost minus the amoritization cost is 0.
+Third, you might also see that control is a straight line... Yes, it is a straight line if you look at the URL data. Control, again, is the amortization cost, which is subtracted by the amortization cost when plotted... So the amortization cost minus the amortization cost is 0.
 
 ----
 
@@ -517,14 +527,14 @@ Reference article: [Nanotrusting the Nanotime](http://shipilev.net/blog/2014/nan
 
 ## How to read the charts
 
-The charts are in nanoseconds / operation on the Y axis, which corresponds with the amoritization cycles for that harness point. 1024 cycles represents light server load, while 1 represents heavy server load. The data for the selected item should fit the load capacity of the server, and the majority of the fastest option. TridentSDK maintains responsiveness by allowing slow registry trade for fast runtime. Lower ns/op is better.
+The charts are in nanoseconds / operation on the Y axis, which corresponds with the amortization cycles for that harness point. 1024 cycles represents light server load, while 1 represents heavy server load. The data for the selected item should fit the load capacity of the server, and the majority of the fastest option. TridentSDK maintains responsiveness by allowing slow registry trade for fast runtime. Lower ns/op is better.
 
 ## Why benchmarking matters
 
-The past generation server software, and designs based on them, such as Sponge/Forge/NMS based servers are unable to multithread their servers because NMS limits the ability to exploit multiple processors. Servers are plagued with "Cannot keep up" warnings, which result in too many tasks being executed for the given time in a server heartbeat. In order to reduce these warnings, TridentSDK is implemented cleanroom, breaking free of the multithreading bonds to fully use the processor efficiently, and reduce the task execution time to fit more in a single tick.
+The past generation of server software (Bukkit/Spigot), and designs based on them, such as Sponge/Forge/NMS based servers are unable to multi-thread their servers effectively because NMS (net.minecraft.server and related packages) limits their ability to exploit multiple processors. Servers are plagued with "Cannot keep up" warnings, which result from too much work being executed for the given time in a server heartbeat. In order to reduce these warnings, TridentSDK is implemented with multi-threading in mind, breaking free of the bonds imposed by other software to fully utilize the processor efficiently and reduce task execution time to fit more in a single tick.
 
 These tests compare performance of a particular class to previous generation software or library classes (that may or may not have the same semantic functionality as the benchmark comparison). They also help debug classes, as performance issues relate to bugs in the code, or inefficient/over-defensive programming.
 
-Benchmarking also helps make decisions with which option to use, and how well it performs compared to other pieces of software. TridentSDK, is of course, performance-focused.
+Benchmarking also helps make decisions with which option to use, and how well it performs compared to other pieces of software. TridentSDK, is of course, performance focused.
 
 
