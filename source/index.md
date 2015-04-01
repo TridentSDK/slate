@@ -63,30 +63,14 @@ To install Trident, you should have the following installed on your system:
 git clone https://github.com/TridentSDK/Trident.git
 ```
 
-> To download the API source, use:
-
-```shell
-git clone https://github.com/TridentSDK/TridentSDK.git
-```
-
 > To compile the final jar, use:
 
 ```shell
-cd TridentSDK
+cd Trident
 mvn clean install
-
-# Unix
-mv target/tridentsdk-1.0-SNAPSHOT.jar ..
-# Windows
-move target/tridentsdk-1.0-SNAPSHOT.jar ..
-
-cd ../Trident
-javac -d .. -cp "../tridentsdk-1.0-SNAPSHOT.jar" src/main/java/ src/main/java/net/tridentsdk/server/TridentStart.java
-cd ..
 ```
 
-After completing the above steps, you should be in the starting directory, with a fully compiled jar that can be run from the command line to start your server.
-
+After completing the above steps, you should be in `Trident/target`, with a fully compiled jar that can be run from the command line to start your server. Use the `jar-with-dependences`, or the dependencies will not be satisfied.
 
 ## Troubleshooting
 
@@ -113,11 +97,9 @@ We are currently planning an update mechanism built into the server. However, it
 ```shell
 # Remove old files
 rm -r Trident
-rm -r TridentSDK
 
 # Download again
 git clone https://github.com/TridentSDK/Trident.git
-git clone https://github.com/TridentSDK/TridentSDK.git
 ```
 
 > Now go to [Source download](#source-download) and use the `To compile the final jar` steps.
